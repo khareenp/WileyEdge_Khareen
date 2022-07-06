@@ -5,11 +5,13 @@ package main
 
 //import "fmt"
 import (
-	"mymodule/subfolder"
+	"mymodule/assignments"
+	//"mymodule/subfolder"
 )
 
 func main() {
+	assignments.Map()
 
-	subfolder.Start()
+	//subfolder.Start()
  }
  
