@@ -1,14 +1,14 @@
 // Khareen Francis-Proverbs
 // sum of rows and columns
 
-package main
+package assignments
 
 import (
   "fmt"
 )
 
 
-func main() {
+func Multi() {
   // declare a two-dimensional array with two sizes instead of one
   //calculate the sum of the rows and sum of the collumns
   var rows, cols, sumRow, sumCol int 

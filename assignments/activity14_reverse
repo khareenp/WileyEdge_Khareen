@@ -9,13 +9,13 @@
 // Output: 65421
 
 
-package main
+package assignments
 import (
 	"fmt"
 	"strconv"
 )
 
-func main() {
+func Convert() {
     var num1 int
     //prompt user for input
 	fmt.Println("Please enter number 1:")

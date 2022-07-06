@@ -1,7 +1,7 @@
 // Khareen Francis-Proverbs
 // array shifting
 
-package main
+package assignments
 
 import "fmt"
 
@@ -17,7 +17,7 @@ number of elements to be pushed can be taaken as input also
 
 
 
-func main() {
+func ArrayShift() {
 	emotions:=[]int{1,2,3,4,5,6,7,8,9,10}
 	var position int 
 	var direction string

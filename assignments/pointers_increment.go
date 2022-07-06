@@ -18,7 +18,7 @@ func increment(arr[]int) {
 	  }
 }
 
-func pointers_() {
+func Pointers() {
   // create a simple array
   numbers := []int{100,1000,10000} 
 
