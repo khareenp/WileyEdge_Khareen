@@ -6,7 +6,7 @@ import (
 )
 
 func Run() {
-  // take user input and create a 2-d slice
+  // take user input and create a 2d slice
 	var row, col int
 	fmt.Print("Please enter the number of rows: ")
 	fmt.Scan(&row)
@@ -42,57 +42,57 @@ func Run() {
 		fmt.Println()
 	}
 
-	// // create a 3x3 
-	// new_matrix := [][]int{
-	// 	{1, 2, 3},
-	// 	{4, 5, 6},
-	// 	{7, 8, 9},
-	// }
+	// create a 3x3 
+	new_matrix := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
 
 	
 
 	// print the top left triangle of new_matrix
-	// for i := 0; i < 3; i++ {
-	// 	for j := 0; j <= i; j++ {
-	// 		fmt.Printf("%d ", new_matrix[i][j])
-	// 	}
-	// 	fmt.Println()
-	// }
+	for i := 0; i < 3; i++ {
+		for j := 0; j <= i; j++ {
+			fmt.Printf("%d ", new_matrix[i][j])
+		}
+		fmt.Println()
+	}
 
-	// // print reverse triangle of new_matrix
-	// for i := 0; i < 3; i++ {
-	// 	for j := 0; j < 3-i; j++ {
-	// 		fmt.Printf("%d ", new_matrix[i][j])
-	// 	}
-	// 	fmt.Println()
-	// }
+	// print reverse triangle of new_matrix
+	for i := 0; i < 3; i++ {
+		for j := 0; j < 3-i; j++ {
+			fmt.Printf("%d ", new_matrix[i][j])
+		}
+		fmt.Println()
+	}
 
 
 
 //  make new slice with reversed columns of the 3x3 slice
-//  reverseColumns := make([][]int, 3)
-//  for i := 0; i < 3; i++ {
-// 	 reverseColumns[i] = make([]int, 3)
-//  }
-//  for i := 0; i < 3; i++ {
-// 	 for j := 0; j < 3; j++ {
-// 		 reverseColumns[i][j] = new_matrix[i][2-j]
-// 	 }
-// 	 fmt.Println(reverseColumns[i])
-//  }
+ reverseColumns := make([][]int, 3)
+ for i := 0; i < 3; i++ {
+	 reverseColumns[i] = make([]int, 3)
+ }
+ for i := 0; i < 3; i++ {
+	 for j := 0; j < 3; j++ {
+		 reverseColumns[i][j] = new_matrix[i][2-j]
+	 }
+	 fmt.Println(reverseColumns[i])
+ }
 
 
-	// // make a new slice with rows in reverse order of the 3x3 slice
-	// reverseRows := make([][]int, 3)
-	// for i := 0; i < 3; i++ {
-	// 	reverseRows[i] = make([]int, 3)
-	// }
-	// for i := 0; i < 3; i++ {
-    //     for j:=0; j<3;j++{
-    //         reverseRows[i] = new_matrix[2-i]
-    //     }
-    //     		fmt.Println(reverseRows[i])	
-	// }
+	// make a new slice with rows in reverse order of the 3x3 slice
+	reverseRows := make([][]int, 3)
+	for i := 0; i < 3; i++ {
+		reverseRows[i] = make([]int, 3)
+	}
+	for i := 0; i < 3; i++ {
+        for j:=0; j<3;j++{
+            reverseRows[i] = new_matrix[2-i]
+        }
+        		fmt.Println(reverseRows[i])	
+	}
 
         
 
