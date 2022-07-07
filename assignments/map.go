@@ -5,6 +5,7 @@ func pop(arr []int ,x int)(int ,[]int){
     n:=arr[x]
     return n,append(arr[:x], arr[x+1:]...)//
 }
+
 func revese(arr []int)[]int{
    var narry[] int
    for i:=len(arr)-1;i>=0;i--{
@@ -13,7 +14,6 @@ func revese(arr []int)[]int{
    return narry
 
 }
-
 
 func mapsEven(arr[] int ,f func(int) int ) [] int{
     

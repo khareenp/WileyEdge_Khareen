@@ -10,7 +10,8 @@ import (
 )
 
 func main() {
-	assignments.Map()
+	assignments.Run()
+	//assignments.Map()
 
 	//subfolder.Start()
  }

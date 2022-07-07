@@ -1,46 +1,101 @@
 // Khareen Francis-Proverbs
-// sum of rows and columns
-
 package assignments
 
 import (
   "fmt"
 )
 
+func Run() {
+  // take user input and create a 2-d slice
+	var row, col int
+	fmt.Print("Please enter the number of rows: ")
+	fmt.Scan(&row)
+	fmt.Print("Please enter the number of columns: ")
+	fmt.Scan(&col)
 
-func Multi() {
- 
+
+  //declare empty 2d slice to pupulate with user input
+	var matrix [][]int
+
+  //make len of rows "user input"
+	matrix = make([][]int, row)
+	for i := 0; i < row; i++ {
+    //make len of cols "user input"
+		matrix[i] = make([]int, col)
+	}
+
+	// take user input and assign values to the 2-d slice
+	for i := 0; i < row; i++ {
+		for j := 0; j < col; j++ {
+			fmt.Printf("Enter the value for row %d column %d: ", i, j)
+			fmt.Scan(&matrix[i][j])
+		}
+	}
+
+
+	// print the 2d slice
+	fmt.Println("The matrix is:")
+	for i := 0; i < row; i++ {
+		for j := 0; j < col; j++ {
+			fmt.Printf("%d", matrix[i][j])
+		}
+		fmt.Println()
+	}
+
+	// // create a 3x3 
+	// new_matrix := [][]int{
+	// 	{1, 2, 3},
+	// 	{4, 5, 6},
+	// 	{7, 8, 9},
+	// }
+
+	
+
+	// print the top left triangle of new_matrix
+	// for i := 0; i < 3; i++ {
+	// 	for j := 0; j <= i; j++ {
+	// 		fmt.Printf("%d ", new_matrix[i][j])
+	// 	}
+	// 	fmt.Println()
+	// }
+
+	// // print reverse triangle of new_matrix
+	// for i := 0; i < 3; i++ {
+	// 	for j := 0; j < 3-i; j++ {
+	// 		fmt.Printf("%d ", new_matrix[i][j])
+	// 	}
+	// 	fmt.Println()
+	// }
+
+
+
+//  make new slice with reversed columns of the 3x3 slice
+//  reverseColumns := make([][]int, 3)
+//  for i := 0; i < 3; i++ {
+// 	 reverseColumns[i] = make([]int, 3)
+//  }
+//  for i := 0; i < 3; i++ {
+// 	 for j := 0; j < 3; j++ {
+// 		 reverseColumns[i][j] = new_matrix[i][2-j]
+// 	 }
+// 	 fmt.Println(reverseColumns[i])
+//  }
+
+
+	// // make a new slice with rows in reverse order of the 3x3 slice
+	// reverseRows := make([][]int, 3)
+	// for i := 0; i < 3; i++ {
+	// 	reverseRows[i] = make([]int, 3)
+	// }
+	// for i := 0; i < 3; i++ {
+    //     for j:=0; j<3;j++{
+    //         reverseRows[i] = new_matrix[2-i]
+    //     }
+    //     		fmt.Println(reverseRows[i])	
+	// }
+
         
 
 }
 
- // // declare a two-dimensional array with two sizes instead of one
-  // //calculate the sum of the rows and sum of the collumns
-  // var rows, cols, sumRow, sumCol int 
-  // a := [] [] int {
-  //       {1, 2, 3},
-  //       {4, 5, 6},
-  //       {7, 8, 9},
-  //       {10, 11, 12},
-  //   }
-
-  //   //Calculates number of rows an present in given matrix  
-  //   rows= len(a)
-  //   cols= len(a[0]) 
-
-  //   //Calculates sum of each row of given matrix  
-  //   for  i := 0; i < rows; i++{  
-  //       sumRow = 0;  
-  //       for  j := 0; j < cols; j++{  
-  //         sumRow = sumRow + a[i][j];  
-  //       }  
-  //       fmt.Printf("Sum of %d row: %d\n", (i+1), sumRow);  
-  //   }
-  //   //Calculates sum of each column of given matrix  
-  //   for i := 0; i < cols; i++{  
-  //     sumCol = 0;  
-  //     for j := 0; j < rows; j++{  
-  //       sumCol = sumCol + a[j][i];  
-  //     }  
-  //     fmt.Printf("Sum of %d column: %d\n", (i+1), sumCol);  
-  // }  
+ 
