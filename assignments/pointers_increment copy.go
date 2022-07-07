@@ -3,7 +3,7 @@ package assignments
 import "fmt"
 
 
-func incrementt(arr[]int) {
+func increment(arr[]int) {
 	//creates array of pointers
 	var numbersptr [3] *int
 	
@@ -18,9 +18,9 @@ func incrementt(arr[]int) {
 	  }
 }
 
-func Pointers() {
+func Pointerss() {
   // create a simple array
   numbers := []int{100,1000,10000} 
 
-  incrementt(numbers)
+  increment(numbers)
 }
