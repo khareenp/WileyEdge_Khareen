@@ -1,3 +1,6 @@
+//Khareen Francis Proverbs
+// 1)Create a map where values must be a structure type
+
 package assignments
 
 import (
@@ -25,10 +28,8 @@ func MapwithStruct(){
  
 	//put toyota in garage 
 	garage[car1.brand] = car1 
- 
-	//change original supra (ONLY WORKS if using pointer) 
-	//garage[car1.brand].color = "blue" 
-	 
+  
+
 	fmt.Println("The first car in the garage is: ",car1.brand,car1.model,car1.color)
 
 

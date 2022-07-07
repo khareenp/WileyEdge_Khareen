@@ -72,7 +72,4 @@ func Map1(){
 	 
 	//also works... 
 	//a.color = "green" 
-
-
-
 }
