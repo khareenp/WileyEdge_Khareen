@@ -1,8 +1,8 @@
 # WileyEdge_Khareen
-Khareen Francis-Proverbs
+<h2>Khareen Francis Proverbs</h2>
 BSc Software Engineering
-University of the West Indies: Cave Hill
 
+University of the West Indies: Cave Hill
 
 This repository containns all of my assignments and challenges completed in Wiley Edge training. 
 Start date: June 2022
