@@ -1,16 +1,18 @@
 //Khareen Francis Proverbs
 //switch assignment
 
-package assignments
-
-import "fmt"
-
 /*
 Electricity bill from 0 to 100 unit rate $5 per unit 
 from 101 to 200 unit $7 per unit for 201 to 350 unit $10 
 per unit calculate total bill
 
 */
+
+package assignments
+
+import "fmt"
+
+
 
 func Electricity(){
 	var units,total float32

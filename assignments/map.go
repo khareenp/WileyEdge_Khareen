@@ -6,7 +6,7 @@ func pop(arr []int ,x int)(int ,[]int){
     return n,append(arr[:x], arr[x+1:]...)//
 }
 
-func revese(arr []int)[]int{
+func reverse(arr []int)[]int{
    var narry[] int
    for i:=len(arr)-1;i>=0;i--{
        narry=append(narry,arr[i])
@@ -47,7 +47,7 @@ func mapSum(arr[] int)  int{
 func Map(){
 
 arr:=[]int{0,1,2,3,4,5,6,7,8,9,10,11,12}
-//fmt.Println(  revese (arr ))
+//fmt.Println(  reverse (arr ))
 arr= maps(arr,func(r int) int{     
     return r*2 
 })

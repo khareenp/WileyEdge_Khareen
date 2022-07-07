@@ -1,10 +1,8 @@
 //Khareen Proverbs
 // Activity 14
-
-// Write a program that asks the user for an input integer and then computes the reverse of that number
-
+// Write a program that asks the user for an input integer 
+//and then computes the reverse of that number
 // Example:
-
 // Input: 12456
 // Output: 65421
 

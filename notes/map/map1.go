@@ -6,6 +6,16 @@ import (
 )
 
 
+
+func mapfromfn(item map[string]float64) map[string]float64{
+    db:=make(map[string]float64)
+    for k,v:=range item{
+        db[k]=v*2
+
+    }
+    return db
+}
+
 func Map1(){
 	var myGreeting = make(map[string]string)
 	//name [" key"] = value ( type specified when declared )
@@ -72,4 +82,33 @@ func Map1(){
 	 
 	//also works... 
 	//a.color = "green" 
+
+
+//______________________________
+//map using all datatypes
+   mapData:=map[string]interface{}{
+       "Name" : "noknown", 
+       "Age" : 23,
+       "Admin" :true,
+       "Hobbies":[]string{"IT", "Travel"},
+       "Complex" :struct{
+           real int
+           img int
+
+       }{12,-1},
+   }
+   fmt.Println(mapData )
+
+   //----------------------------
+   //map with key type "string" stores "float"
+   p:=make(map[string]float64)
+   p["iPhone"]=99256.50
+   p["Android"]=5000
+   updatadata:= mapfromfn(p)
+   for key,val:= range updatadata{
+       fmt.Printf( "%s   %v \n" ,key, val)
+
 }
+
+}
+ 

@@ -1,5 +1,9 @@
 //Khareen Francis Proverbs
 //Practise 2 Esle if
+/*
+A grade calculator that outputs a letter
+grade based on a given numeric grade
+*/
 
 package assignments
 
@@ -7,10 +11,7 @@ import (
 	"fmt"
 )
 
-/*
-A grade calculator that outputs a letter
-grade based on a given numeric grade
-*/
+
 
 func ElseIfPractise() {
    
