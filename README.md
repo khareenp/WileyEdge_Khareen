@@ -1,5 +1,5 @@
 # WileyEdge_Khareen
-Khareen Francis-Proverbs
+Khareen Francis Proverbs
 BSc Software Engineering
 University of the West Indies: Cave Hill
 
