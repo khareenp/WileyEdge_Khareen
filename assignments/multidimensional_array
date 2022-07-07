@@ -4,7 +4,6 @@ package assignments
 import (
   "fmt"
 )
-
 func Run() {
   // take user input and create a 2d slice
 	var row, col int

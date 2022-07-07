@@ -26,7 +26,7 @@ func mapsEven(arr[] int ,f func(int) int ) [] int{
     return arr
 }
 func maps(arr[] int ,f func(int) int ) [] int{
-    
+   
     for i,v:=range arr{
         arr[i]=f(v)
     }

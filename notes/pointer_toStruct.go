@@ -1,8 +1,6 @@
 package notes
 import "fmt"
 
-//structs are same as classes in java!!
-
 
 type contactInfo struct {
 	Email   string

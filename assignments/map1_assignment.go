@@ -9,9 +9,6 @@ import (
 
 
 func MapwithStruct(){
-	
-	
-
 	//create map where values must be structure type
 	//
 	type car struct { 

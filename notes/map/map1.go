@@ -48,7 +48,7 @@ func Map1(){
 
 	//SORTING MAP
 	//you must first sort by creating a slice
-	//and storE keys in the slice 
+	//and store keys in the slice 
 	temp:=map[string]int{"GHI":7,"ABC" : 5, "DEF" : 6,"ZXX": 8 }    
 	keys :=make([] string, 0,len(temp))
 	for i:= range temp{
