@@ -38,7 +38,8 @@ import (
 
 )
 
-
+//--------------------------------------------------------------
+//Activity1
 func RandomGen(n int) []int{
 	//must use to keep track of machine time and generate new random number
 	//or number will repeat
@@ -53,7 +54,8 @@ func RandomGen(n int) []int{
 	}
 	return random//return slice
 }
-
+//--------------------------------------------------------------
+// Activity 2 part 1
 
 func Max(n []int) int {
 	//initialize first value as the max to compare
@@ -70,7 +72,25 @@ func Max(n []int) int {
     //fmt.Println(max)
 	return max
 }
-
+//--------------------------------------------------------------
+//Activity 2 part 2
+//find the index of the max value
+func indexOfMax(n []int)int{
+	var indexMax int
+	//vallue to store the index number
+	for v,i:=range n{
+		indexMax=Max(n)//index of max value
+		//if value "i", is == to the number returned as max 
+		//stored in indexMax
+		if i == indexMax{
+			//display the index number 'v'
+			fmt.Println("the index of max number is",v)
+		}
+	}
+	return indexMax
+}
+//--------------------------------------------------------------
+//Activity 2 part 3
 func Min(n []int) int {
 	//initialize first value as the minimum to compare
 	min:=n[0]
@@ -86,27 +106,26 @@ func Min(n []int) int {
 	return min
 }
 
-func indexOfMax(n []int)int{
-	var indexval int
-	for v,i:=range n{
-		indexval=Max(n)
-		if i == indexval{
-			fmt.Println("the index of max number is",v)
-		}
-	}
-	return indexval
-}
+//--------------------------------------------------------------
+//Activity 2 part 3
+//find the index of the minimum value
 func indexOfMin(n []int)int{
-	var indexval int
+	//vallue to store the index number
+	var indexMin int
 	for v,i:=range n{
-		indexval=Min(n)
-		if i == indexval{
+
+		indexMin=Min(n)//index of min value
+		//if value "i", is == to the number returned as minimum 
+		//stored in indexMin
+		if i == indexMin{
+			//display the index number 'v'
 			fmt.Println("the index of max number is",v)
 		}
 	}
-	return indexval
+	//must return to system so it can be used
+	return indexMin
 }
-
+//--------------------------------------------------------------
 
 
 func Start(){
