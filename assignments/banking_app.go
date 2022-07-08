@@ -1,7 +1,7 @@
 //Khareen Francis-Proverbs
 //Banking System
 
-package subfolder
+package assignments
 
 import (
 	"fmt"
@@ -64,7 +64,7 @@ func Withdraw(x Account) float32{
 	return x.Balance
 }
 
-func Start(){
+func Bank(){
 	min := 10
     max := 99999
 	

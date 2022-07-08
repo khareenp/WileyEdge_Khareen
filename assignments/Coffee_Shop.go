@@ -40,7 +40,7 @@ coffee. It should complete the following steps:
 
 
 */
-package subfolder
+package assignments
 
 import ("fmt"
 	"strings")
@@ -290,10 +290,5 @@ func Coffee() {
 	//after all selections. this message will be displayed and program will terminate.
 	end: 
 	fmt.Println("\nThankyou have a nice day!!")
- 
-	
-
-	
-  
 
 }
