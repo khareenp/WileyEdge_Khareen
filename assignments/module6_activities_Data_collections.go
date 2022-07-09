@@ -55,6 +55,7 @@ func RandomGen(arr int) []int{
 	return random//return slice
 }
 //--------------------------------------------------------------
+
 // Activity 2 part 1
 func Max(arr []int) int {
 	//initialize first value as the max to compare
@@ -72,6 +73,7 @@ func Max(arr []int) int {
 	return max
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 2
 //find the index of the max value
 func indexOfMax(arr []int)int{
@@ -89,6 +91,7 @@ func indexOfMax(arr []int)int{
 	return indexMax
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 3
 func Min(arr []int) int {
 	//initialize first value as the minimum to compare
@@ -105,6 +108,7 @@ func Min(arr []int) int {
 	return min
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 4
 //find the index of the minimum value
 func indexOfMin(arr []int)int{
@@ -147,6 +151,7 @@ func Sortascend(arr []int)[]int{
 	return sorted
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 5
 //Sort an array of int in descending order and return the new sorted array in a separate array.
 func Sortdescend(arr []int)[]int{
@@ -169,6 +174,7 @@ func Sortdescend(arr []int)[]int{
 	return sorted
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 7
 //Compute the mean of an array
 func mean(arr []int) int {
@@ -187,6 +193,7 @@ func mean(arr []int) int {
 //Compute the mean of an array
 
 //--------------------------------------------------------------
+
 //Activity 2 part 9
 //identify all positive integers
 func positive(arr []int) []int{
@@ -199,6 +206,7 @@ func positive(arr []int) []int{
 	return positive_arr
 }
 //--------------------------------------------------------------
+
 //Activity 2 part 10
 //identify all negative integers
 func negative(arr []int) []int{
@@ -212,6 +220,35 @@ func negative(arr []int) []int{
 }
 
 //--------------------------------------------------------------
+
+//Activity 2 part 11
+//Compute the longest sequence of sorted numbers (in descending or ascending order) 
+//in the array and return in a new array
+// Example: input: [1 45 67 87 6 57 0]
+// Output: [1 45 67 87]
+
+//--------------------------------------------------------------
+
+//Activity 2 part 12
+// Remove duplicates from an array of ints and return the unique elements in a slice
+
+func removeDup(arr []int) []int {
+    keys := make(map[int]bool)
+    new_arr := []int{}
+ 
+    // If the key(values of the slice) is not equal
+    // to the already present value in new slice (new_arr)
+    // then we append it. else we jump on another element.
+    for _, i := range arr {
+        if _, value := keys[i]; !value {
+            keys[i] = true
+            new_arr = append(new_arr, i)
+        }
+    }
+    return new_arr
+}
+//--------------------------------------------------------------
+
 
 
 
@@ -231,6 +268,7 @@ func Start(){
 	fmt.Println("\nThe mean of slice_100 is: ",mean(slice_100))
 	fmt.Println("\nThe positive numbers are: ",positive(slice_100))
 	fmt.Println("\nThe negative numbers are: ",negative(slice_100))
+	fmt.Println("\nThe slice with no duplicates is: ",removeDup(slice_100))
 
    
 }
