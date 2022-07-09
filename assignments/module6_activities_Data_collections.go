@@ -56,7 +56,6 @@ func RandomGen(arr int) []int{
 }
 //--------------------------------------------------------------
 // Activity 2 part 1
-
 func Max(arr []int) int {
 	//initialize first value as the max to compare
 	max := arr[0]
@@ -105,7 +104,6 @@ func Min(arr []int) int {
 	}
 	return min
 }
-
 //--------------------------------------------------------------
 //Activity 2 part 4
 //find the index of the minimum value
@@ -200,7 +198,6 @@ func positive(arr []int) []int{
 	}
 	return positive_arr
 }
-
 //--------------------------------------------------------------
 //Activity 2 part 10
 //identify all negative integers
