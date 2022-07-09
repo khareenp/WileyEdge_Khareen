@@ -187,16 +187,33 @@ func mean(arr []int) int {
 //--------------------------------------------------------------
 //Activity 2 part 8
 //Compute the mean of an array
-func median(arr []int) int {
-    if len(arr) == 0 {
-        return 0
-    }
-    var sum int
-    for _, i := range arr {
-        sum += i
-    }
-    return sum / int(len(arr))
+
+//--------------------------------------------------------------
+//Activity 2 part 9
+//identify all positive integers
+func positive(arr []int) []int{
+	positive_arr:=make([]int,len(arr))//slice to store sorted
+	for i:=0; i < len(arr); i++{
+		if arr[i]>0{
+			positive_arr= append(positive_arr, arr[i])
+		}
+	}
+	return positive_arr
 }
+
+//--------------------------------------------------------------
+//Activity 2 part 10
+//identify all negative integers
+func negative(arr []int) []int{
+	positive_arr:=make([]int,len(arr))//slice to store sorted
+	for i:=0; i < len(arr); i++{
+		if arr[i]<0{
+			positive_arr= append(positive_arr, arr[i])
+		}
+	}
+	return positive_arr
+}
+
 //--------------------------------------------------------------
 
 
@@ -215,6 +232,8 @@ func Start(){
 	fmt.Println("\nSorted in Ascending order: ")
     Sortascend(slice_100)
 	fmt.Println("\nThe mean of slice_100 is: ",mean(slice_100))
+	fmt.Println("\nThe positive numbers are: ",positive(slice_100))
+	fmt.Println("\nThe negative numbers are: ",negative(slice_100))
 
    
 }
