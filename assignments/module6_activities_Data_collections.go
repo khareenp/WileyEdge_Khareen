@@ -40,14 +40,14 @@ import (
 
 //--------------------------------------------------------------
 //Activity1
-func RandomGen(n int) []int{
+func RandomGen(arr int) []int{
 	//must use to keep track of machine time and generate new random number
 	//or number will repeat
 	rand.Seed(time.Now().UnixNano())
-	random:=make([]int,n)//makes slice of size "n"
+	random:=make([]int,arr)//makes slice of size "arr"
 	min:= -100//min range
 	max:=100//max range
-	for i:=0 ; i < n ; i++{
+	for i:=0 ; i < arr ; i++{
 	//for each position in slice generate a random between max an min value
 	random[i] = (rand.Intn(max-min+1)+min)
 
@@ -57,16 +57,16 @@ func RandomGen(n int) []int{
 //--------------------------------------------------------------
 // Activity 2 part 1
 
-func Max(n []int) int {
+func Max(arr []int) int {
 	//initialize first value as the max to compare
-	max := n[0]
+	max := arr[0]
 
 	//iterate each element in slice
-	for i := 1; i < len(n); i++ {
+	for i := 1; i < len(arr); i++ {
 		//if value in array[0] is smaller
-		if max < n[i] {
+		if max < arr[i] {
 			//next value becomes max
-			max = n[i]
+			max = arr[i]
 		}
 	}
     //fmt.Println(max)
@@ -75,11 +75,11 @@ func Max(n []int) int {
 //--------------------------------------------------------------
 //Activity 2 part 2
 //find the index of the max value
-func indexOfMax(n []int)int{
+func indexOfMax(arr []int)int{
 	var indexMax int
 	//vallue to store the index number
-	for v,i:=range n{
-		indexMax=Max(n)//index of max value
+	for v,i:=range arr{
+		indexMax=Max(arr)//index of max value
 		//if value "i", is == to the number returned as max 
 		//stored in indexMax
 		if i == indexMax{
@@ -91,35 +91,35 @@ func indexOfMax(n []int)int{
 }
 //--------------------------------------------------------------
 //Activity 2 part 3
-func Min(n []int) int {
+func Min(arr []int) int {
 	//initialize first value as the minimum to compare
-	min:=n[0]
+	min:=arr[0]
 
 	//iterate each element in slice
-	for i:=1 ; i<len(n) ; i++{
+	for i:=1 ; i<len(arr) ; i++{
 		//if value in array[0] is larger
-		if min > n[i] {
+		if min > arr[i] {
 			//next value becomes minimum
-			min=n[i]
+			min=arr[i]
 		}
 	}
 	return min
 }
 
 //--------------------------------------------------------------
-//Activity 2 part 3
+//Activity 2 part 4
 //find the index of the minimum value
-func indexOfMin(n []int)int{
+func indexOfMin(arr []int)int{
 	//vallue to store the index number
 	var indexMin int
-	for v,i:=range n{
+	for v,i:=range arr{
 
-		indexMin=Min(n)//index of min value
+		indexMin=Min(arr)//index of min value
 		//if value "i", is == to the number returned as minimum 
 		//stored in indexMin
 		if i == indexMin{
 			//display the index number 'v'
-			fmt.Println("the index of max number is",v)
+			fmt.Println("the index of min number is",v)
 		}
 	}
 	//must return to system so it can be used
@@ -127,17 +127,94 @@ func indexOfMin(n []int)int{
 }
 //--------------------------------------------------------------
 
+//Activity 2 part 6
+//Sort an array of int in ascending order and return the new sorted array in a separate array.
+func Sortascend(arr []int)[]int{
+	//vallue to store the index number
+	sorted:=make([]int,len(arr))//slice to store sorted
+	length:= len(arr)-1
+    
+	for i:= 0 ; i < length ; i++{
+		for j:= i+1; j <length; j++{
+			//tmp:=0
+			if arr[i]>arr[j]{
+				tmp :=arr[i]
+				arr[i]=arr[j]
+				arr[j]=tmp
+			}
+		}
+		sorted = append(sorted, arr[i])
+	}
+    fmt.Println(sorted)
+	return sorted
+}
+//--------------------------------------------------------------
+//Activity 2 part 5
+//Sort an array of int in descending order and return the new sorted array in a separate array.
+func Sortdescend(arr []int)[]int{
+	//vallue to store the index number
+	sorted:=make([]int,len(arr))//slice to store sorted
+	length:= len(arr)-1
+    
+	for i:= 0 ; i < length ; i++{
+		for j:= i+1; j <length; j++{
+			//tmp:=0
+			if arr[i]<arr[j]{
+				tmp :=arr[i]
+				arr[i]=arr[j]
+				arr[j]=tmp
+			}
+		}
+		sorted = append(sorted, arr[i])
+	}
+    fmt.Println(sorted)
+	return sorted
+}
+//--------------------------------------------------------------
+//Activity 2 part 7
+//Compute the mean of an array
+func mean(arr []int) int {
+    if len(arr) == 0 {
+        return 0
+    }
+    var sum int
+    for _, i := range arr {
+		//add values of each index and store in sum
+        sum += i
+    }
+    return sum / int(len(arr))
+}
+//--------------------------------------------------------------
+//Activity 2 part 8
+//Compute the mean of an array
+func median(arr []int) int {
+    if len(arr) == 0 {
+        return 0
+    }
+    var sum int
+    for _, i := range arr {
+        sum += i
+    }
+    return sum / int(len(arr))
+}
+//--------------------------------------------------------------
+
+
 
 func Start(){
 	
 	slice_100:=RandomGen(100)
   
     fmt.Println(slice_100)
-    fmt.Println(Max(slice_100))
-    fmt.Println(Min(slice_100))
+	fmt.Printf("The largest number is %d\n",Max(slice_100))
+    fmt.Printf("The smallest number is %d\n",Min(slice_100))
     indexOfMax(slice_100)
     indexOfMin(slice_100)
+	fmt.Println("\nSorted in Descending order:")
+    Sortdescend(slice_100)
+	fmt.Println("\nSorted in Ascending order: ")
+    Sortascend(slice_100)
+	fmt.Println("\nThe mean of slice_100 is: ",mean(slice_100))
 
-	
    
 }

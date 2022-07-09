@@ -7,7 +7,7 @@ func pop(arr []int ,x int)(int ,[]int){
 }
 func revese(arr []int)[]int{
    var narry[] int
-   for i:=len(arr)-1;i>=0;i--{
+   for i:=len(arr)-1 ; i >=0 ;i--{
        narry=append(narry,arr[i])
    }
    return narry
