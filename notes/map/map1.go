@@ -5,8 +5,6 @@ import (
 	"sort"
 )
 
-
-
 func mapfromfn(item map[string]float64) map[string]float64{
     db:=make(map[string]float64)
     for k,v:=range item{
