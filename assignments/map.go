@@ -1,3 +1,5 @@
+//Khareen Proverbs
+//Map with few other methods
 package assignments
 
 import "fmt"
@@ -12,7 +14,6 @@ func reverse(arr []int)[]int{
        narry=append(narry,arr[i])
    }
    return narry
-
 }
 
 func mapsEven(arr[] int ,f func(int) int ) [] int{

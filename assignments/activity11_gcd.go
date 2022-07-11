@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Activity 11
 // Write a program that calculates the greatest common divisor between
 // two numbers.

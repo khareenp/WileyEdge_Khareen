@@ -1,4 +1,4 @@
-//Khareen francis Proverbs
+//Khareen Proverbs
 // Activity 6
 // Write a program that asks the user for a positive integer and then 
 // displays the multiplication table of that input number from 1 

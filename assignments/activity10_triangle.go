@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Activity 10
 /**/
 //Write a program that takes as input a number and produces a 

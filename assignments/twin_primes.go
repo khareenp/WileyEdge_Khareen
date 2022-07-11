@@ -1,6 +1,5 @@
-// Khareen Francis Proverbs
+// Khareen Proverbs
 //Twin Primes
-// Khareen Francis Proverbs
 
 package assignments
 

@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Convert centimeter to inches
  package assignments
 

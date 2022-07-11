@@ -1,4 +1,4 @@
-// Khareen Francis-Proverbs
+// Khareen Proverbs
 // sum of rows and columns
 
 package assignments

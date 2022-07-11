@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //switch assignment
 
 /*

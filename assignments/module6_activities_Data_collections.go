@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Module 6 Activities: Data Collections
 
 //Activity 1

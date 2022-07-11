@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 // Map sorting
 
 // 3) Create a map ex

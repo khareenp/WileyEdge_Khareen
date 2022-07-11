@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 // 1)Create a map where values must be a structure type
 
 package assignments

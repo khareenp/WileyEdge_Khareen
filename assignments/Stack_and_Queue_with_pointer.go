@@ -1,3 +1,7 @@
+//Khareen Proverbs
+//Create stack and queue
+//Create push and pop method for stack LIFO
+//created enqueue and dequeue for queue FIFO
 package assignments
 
 import "fmt"

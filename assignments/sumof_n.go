@@ -1,6 +1,6 @@
+// Khareen Proverbs
 // ACTIVITY 7
 // DATATYPES
-// Khareen Francis Proverbs
 //calculate the sum of first n natural numbers 1,2,3,4,5,6.....n
 
 package assignments

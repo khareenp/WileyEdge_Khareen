@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 // Generate the next prime number after "n"
 package assignments
 

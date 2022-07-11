@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Coffee Shop
 //June 30th 2022
 /*

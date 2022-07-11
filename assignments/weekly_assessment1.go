@@ -1,4 +1,4 @@
-//Khareen Francis-Proverbs
+//Khareen Proverbs
 //July 1st 2022 
 
 package assignments

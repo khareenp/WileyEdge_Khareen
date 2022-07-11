@@ -1,3 +1,6 @@
+//Khareen Proverbs
+//Simpl e array of pointers
+//create new slice increment values
 package assignments
 
 import "fmt"

@@ -1,4 +1,11 @@
-// Khareen Francis-Proverbs
+// Khareen Proverbs
+//Create multidimensional slice with user input and do following:
+//print topleft triangle
+//print reverse triangle
+//  make new slice with reversed columns of the 3x3 slice
+// make a new slice with rows in reverse order of the 3x3 slice
+
+
 package assignments
 
 import (
@@ -47,8 +54,6 @@ func Run() {
 		{4, 5, 6},
 		{7, 8, 9},
 	}
-
-	
 
 	// print the top left triangle of new_matrix
 	for i := 0; i < 3; i++ {

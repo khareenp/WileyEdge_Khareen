@@ -1,4 +1,4 @@
-// Khareen Francis Proverbs
+// Khareen Proverbs
 // Activity 21
 
 // An Armstrong number is a number where the sum of the cubes 

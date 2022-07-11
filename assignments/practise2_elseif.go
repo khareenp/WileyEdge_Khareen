@@ -1,4 +1,4 @@
-//Khareen Francis Proverbs
+//Khareen Proverbs
 //Practise 2 Esle if
 /*
 A grade calculator that outputs a letter
