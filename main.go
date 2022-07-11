@@ -3,16 +3,20 @@
 
 package main
 
-//import "fmt"
 import "mymodule/assignments"
+
+//import "fmt"
+//import "mymodule/assignments"
 
 //"mymodule/assignments"
 //"mymodule/subfolder"
 
 func main() {
 	//assignments.Map()
-	assignments.Start()
-
+	//assignments.Start()
+	//assignments.Bank()
 	//subfolder.Start()
+	assignments.BlackJack()
+
  }
  

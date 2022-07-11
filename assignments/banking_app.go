@@ -14,7 +14,7 @@ import (
 // create the struct( onstructor in java)
 type Account struct {
    Type string
-   Balance float32
+   Balance float64
    FirstName string
    LastName string
    UserID int
@@ -22,7 +22,7 @@ type Account struct {
 }
 
 //---------------------------------------------------------------------------------
-func (x Account) DisplayBalance()float32{
+func (x Account) DisplayBalance()float64{
 	fmt.Printf("Your balance is: %.2f", x.Balance)
 	//fmt.Println("Transaction completed at")
     return x.Balance
@@ -46,6 +46,22 @@ func Deposit(x *Account){
 }
 
 //---------------------------------------------------------------------------------
+func ApplyInterest(x *Account) float64{
+	interest_c:= 0.01
+	interest_i:= 0.02
+	interest_s:= 0.05
+	switch{
+	case  x.Type == "checking":
+		x.Balance = (x.Balance* interest_c) + x.Balance
+	case  x.Type == "investmet":
+		x.Balance = (x.Balance* interest_i) + x.Balance
+	case  x.Type == "saving":
+		x.Balance = (x.Balance* interest_s) + x.Balance
+	}
+	return x.Balance
+}
+
+//---------------------------------------------------------------------------------
 func(x *Account) Withdraw(value float64) (bool,error) {
 
 	var amount float64
@@ -55,19 +71,21 @@ func(x *Account) Withdraw(value float64) (bool,error) {
 	fmt.Println("Please enter amount to Withdraw, divisible by 10: ")
 	fmt.Scanf("%f",&amount)
 	
-	balance = float64(x.Balance)-amount
+	balance= x.Balance-amount
+	//x.Balance = x.Balance-amount
+	
 
-	if amount >= 0 && math.Mod(amount,2)==0{
+	if amount >= 0 && math.Mod(amount,2)==0 && balance>0{
 		balance = float64(x.Balance)-amount
 		fmt.Printf("You have made a withdrawal of %.2f\n",amount)
 		fmt.Printf("Your balance is: %.2f",balance)
 		return true, nil
 	} else{
 		fmt.Print("You have entered an incorrect value, Please try again.")
-		return false, errors.New("You cannot withdraw from this account.")
 		//goto withdraw
-	// use the errors package to display a new, custom error message
+	// use the errors package to display a new, clearcustom error message
  }
+ return false, errors.New("You cannot withdraw from this account")
 
 
 //---------------------------------------------------------------------------------
@@ -109,10 +127,10 @@ func Bank(){
 	//a := account{}
 	//a := new(account)
 	// a:=Account{Name: "Mark" , Balance:140,UserID:(rand.Intn(max - min) + min)}
-	a:=Account{FirstName: "Mark" ,LastName: "Vine" , Balance:140,UserID:(rand.Intn(max - min) + min)}
-	b:=Account{FirstName: "John" ,LastName: "Doe" , Balance:500,UserID:(rand.Intn(max - min) + min)}
-	c:=Account{FirstName: "Jane" ,LastName: "Doe" , Balance:1000,UserID:(rand.Intn(max - min) + min)}
-	d:=Account{FirstName: "Sarah" ,LastName: "Gill" , Balance:8500,UserID:(rand.Intn(max - min) + min)}
+	a:=Account{FirstName: "Mark" ,LastName: "Vine" , Balance:140,UserID:(rand.Intn(max - min) + min),Type: "checkings"}
+	b:=Account{FirstName: "John" ,LastName: "Doe" , Balance:500,UserID:(rand.Intn(max - min) + min),Type:"investment"}
+	c:=Account{FirstName: "Jane" ,LastName: "Doe" , Balance:1000,UserID:(rand.Intn(max - min) + min),Type: "savings"}
+	d:=Account{FirstName: "Sarah" ,LastName: "Gill" , Balance:8500,UserID:(rand.Intn(max - min) + min),Type: "savings"}
 	
 	fmt.Println(d.UserID)
 	fmt.Println(time_)
