@@ -69,7 +69,9 @@ func(x *Account) Withdraw(value float64) (bool,error) {
 	// use the errors package to display a new, custom error message
  }
 
-//supposed to have no parameters
+
+//---------------------------------------------------------------------------------
+//Original function
 // func Withdraw(x *Account) float32{
 // 	var amount float64
 // 	var balance float64
