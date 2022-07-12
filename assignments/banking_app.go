@@ -54,12 +54,15 @@ func Welcome(){
 }
 //---------------------------------------------------------------------------------
 //Create account
-func CreateAcc(){
+func CreateAcc() {
+	//acc:=map([],)
 	var acc_entity, account_type string
 	fmt.Println("Please enter an entity, Individual or business")
 	fmt.Scanln(&acc_entity)
 	fmt.Println("Please enter type of account: Checkings, Savings, Investment")
 	fmt.Scanln(&account_type)
+
+	//return acc
 
 }
 
@@ -223,6 +226,14 @@ func InternalTransfer(x *account) (string, float64){
 	x.TotalBalance= x.CheckingBalance + x.SavingBalance + x.InvestBalance
 	return  x.Type, x.TotalBalance
 }
+//---------------------------------------------------------------------------------
+//External Transfer
+//Transfer between different users
+
+func ExternalTransfer(acc1, acc2 wallet){
+	fmt.Println("Please ")
+
+}
 
 
 //---------------------------------------------------------------------------------
@@ -247,22 +258,46 @@ func (x *account) DisplayBalance(){
 
 //---------------------------------------------------------------------------------
 
+func InterestIndividual(x *account){
 
-//---------------------------------------------------------------------------------
-// func ApplyInterest(x *account) float64{
-// 	interest_c:= 0.01
-// 	interest_i:= 0.02
-// 	interest_s:= 0.05
-// 	switch{
-// 	case  x.Type == "checking":
-// 		x.Balance = (x.Balance* interest_c) + x.Balance
-// 	case  x.Type == "investmet":
-// 		x.Balance = (x.Balance* interest_i) + x.Balance
-// 	case  x.Type == "saving":
-// 		x.Balance = (x.Balance* interest_s) + x.Balance
-// 	}
-// 	return x.Balance
-// }
+	account_type := x.Type	
+	interest_c:= 0.01
+	interest_i:= 0.02
+	interest_s:= 0.05
+
+	for account_type == "individual"{
+		switch{
+		case  account_type=="checkings":
+			x.CheckingBalance = (x.CheckingBalance* interest_c) + x.CheckingBalance
+	
+		case  account_type=="savings":
+			x.CheckingBalance = (x.CheckingBalance* interest_s) + x.CheckingBalance
+	
+		case  account_type=="investment":
+			x.CheckingBalance = (x.CheckingBalance* interest_i) + x.CheckingBalance
+		}
+	}
+}
+func InterestBusiness(x *account){
+
+	account_type := x.Type	
+	interest_c:= 0.005
+	interest_i:= 0.01
+	interest_s:= 0.02
+
+	for account_type == "business"{
+		switch{
+		case  account_type=="checkings":
+			x.CheckingBalance = (x.CheckingBalance* interest_c) + x.CheckingBalance
+	
+		case  account_type=="savings":
+			x.CheckingBalance = (x.CheckingBalance* interest_s) + x.CheckingBalance
+	
+		case  account_type=="investment":
+			x.CheckingBalance = (x.CheckingBalance* interest_i) + x.CheckingBalance
+		}
+	}
+}
 
 //---------------------------------------------------------------------------------
 
