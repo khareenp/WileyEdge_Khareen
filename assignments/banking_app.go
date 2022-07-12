@@ -230,10 +230,10 @@ func InternalTransfer(x *account) (string, float64){
 //External Transfer
 //Transfer between different users
 
-func ExternalTransfer(acc1, acc2 wallet){
-	fmt.Println("Please ")
+// func ExternalTransfer(acc1, acc2 wallet){
+// 	fmt.Println("Please ")
 
-}
+// }
 
 
 //---------------------------------------------------------------------------------
@@ -301,9 +301,7 @@ func InterestBusiness(x *account){
 }
 
 //---------------------------------------------------------------------------------
-
-
-
+//Start application
 func Bank(){
 	Welcome()
 	min := 10
