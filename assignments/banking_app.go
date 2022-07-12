@@ -7,7 +7,6 @@ package assignments
 import (
 	"errors"
 	"fmt"
-	"math"
 	"math/rand"
 	"time"
 )
@@ -227,11 +226,24 @@ func InternalTransfer(x *account) (string, float64){
 
 
 //---------------------------------------------------------------------------------
-// func (x account) DisplayBalance()float64{
-// 	fmt.Printf("Your balance is: %.2f", x.Balance)
-// 	//fmt.Println("Transaction completed at")
-//     return x.Balance
-// }
+//Display balance
+func (x *account) DisplayBalance(){
+	var choice int
+	fmt.Println("Please select account balance you wish to display")
+	fmt.Println("1. Savings")
+	fmt.Println("1. Checkings")
+	fmt.Println("1. Investment")
+	fmt.Scanf("%s\n",&choice)
+
+	switch {
+	case choice == 1:
+		fmt.Printf("Your Savings account balance is: %.2f\n", x.SavingBalance)
+	case choice == 2:
+		fmt.Printf("Your Checkings account balance is: %.2f\n", x.CheckingBalance)
+	case choice == 3:
+		fmt.Printf("Your Investment account balance is: %.2f\n", x.InvestBalance)
+	}	
+}
 
 //---------------------------------------------------------------------------------
 
