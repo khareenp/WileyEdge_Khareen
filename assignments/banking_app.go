@@ -11,110 +11,252 @@ import (
 	"time"
 )
 
-// create the struct( onstructor in java)
-type Account struct {
-   Type string
-   Balance float64
-   FirstName string
-   LastName string
-   UserID int
-   CreatedAt time.Time
-}
-
 //---------------------------------------------------------------------------------
-func (x Account) DisplayBalance()float64{
-	fmt.Printf("Your balance is: %.2f", x.Balance)
-	//fmt.Println("Transaction completed at")
-    return x.Balance
-}
-
-//---------------------------------------------------------------------------------
-func Deposit(x *Account){
-	var amount float64
-	deposit:
-	fmt.Println("Please enter amount to deposit: ")
-	fmt.Scanf("%f",&amount)
-	balance := float64(x.Balance)+ amount
-
-	if amount <= 0  {
-		fmt.Println("You have entered insuffiction balance, please try again")
-		goto deposit
-	}else{
-		fmt.Printf("You have made a total deposit of: %.2f\n",amount)
-		fmt.Printf("Your new balance is: %.2f",balance)
-	}
-}
-
-//---------------------------------------------------------------------------------
-func ApplyInterest(x *Account) float64{
-	interest_c:= 0.01
-	interest_i:= 0.02
-	interest_s:= 0.05
-	switch{
-	case  x.Type == "checking":
-		x.Balance = (x.Balance* interest_c) + x.Balance
-	case  x.Type == "investmet":
-		x.Balance = (x.Balance* interest_i) + x.Balance
-	case  x.Type == "saving":
-		x.Balance = (x.Balance* interest_s) + x.Balance
-	}
-	return x.Balance
-}
-
-//---------------------------------------------------------------------------------
-func(x *Account) Withdraw(value float64) (bool,error) {
-
-	var amount float64
-	var balance float64
+// Structures
+type account struct{
+	Type string
+	//Balance map[string]float64
+	TotalBalance float64
+   	CheckingBalance float64
+   	SavingBalance float64
+   	InvestBalance float64
+   	FirstName string
+   	LastName string
+   	UserID int
+	Interest float64
+   	CreatedAt time.Time
+	Owner entity
 	
-	//withdraw:
+}
+
+type entity struct{
+	ID int
+	Address string
+	EntityType string
+}
+
+type wallet struct{
+	WalletID string
+	Accounts account
+	WalletOwner entity
+}
+
+//---------------------------------------------------------------------------------
+//Welcome Screen
+func Welcome(){
+	fmt.Println("**************************************")
+	fmt.Println("***             WELCOME            ***")
+	fmt.Println("******* PLEASE SELECT NUMBER *********")
+	fmt.Println("************   TO START   ************")
+	fmt.Println("**************************************")
+	fmt.Println("**************************************")
+	fmt.Println("**************************************")
+}
+//---------------------------------------------------------------------------------
+//Create account
+func CreateAcc(){
+	var acc_entity, account_type string
+	fmt.Println("Please enter an entity, Individual or business")
+	fmt.Scanln(&acc_entity)
+	fmt.Println("Please enter type of account: Checkings, Savings, Investment")
+	fmt.Scanln(&account_type)
+
+}
+
+//---------------------------------------------------------------------------------
+//Withdraw
+func(x *account) Withdraw(value float64) (bool,error) {
+
+	var amount float64
+	var account_type string
+	
+	fmt.Println("Please enter account type:")
+	fmt.Println("Checkings:")
+	fmt.Println("Savings:")
+	fmt.Println("Investment:")
+	fmt.Scanf("%f",&account_type)
+
+	withdrawal:
 	fmt.Println("Please enter amount to Withdraw, divisible by 10: ")
 	fmt.Scanf("%f",&amount)
+
+	for int(amount) % 10 ==0{
+		switch {
+
+		case account_type =="checkings":
+			if amount < x.CheckingBalance{
+				x.CheckingBalance-= amount
+				fmt.Printf("You have made a total withdrawl of: %.2f\n",amount)
+				fmt.Printf("Your new balance is: %.2f",x.CheckingBalance)
+			}else{
+				fmt.Println("Sorry insufficient balance. Please try again")
+				goto withdrawal
+			}
 	
-	balance= x.Balance-amount
-	//x.Balance = x.Balance-amount
+		case account_type =="savings":
+			if amount < x.SavingBalance{
+				x.SavingBalance-=amount
+				fmt.Printf("You have made a total deposit of: %.2f\n",amount)
+				fmt.Printf("Your new balance is: %.2f",x.SavingBalance)
+			}else{
+				fmt.Println("Sorry insufficient balance. Please try again")
+				goto withdrawal
+			}
+	
+		case account_type =="investment":
+			if amount < x.InvestBalance{
+				x.InvestBalance-= amount
+				fmt.Printf("You have made a total deposit of: %.2f\n",amount)
+				fmt.Printf("Your new balance is: %.2f",x.InvestBalance)
+			}else{
+				fmt.Println("Sorry insufficient balance. Please try again")
+				goto withdrawal
+			}
+		}
+	} 
+ return false, errors.New("You cannot withdraw that amount from this account")
+}
+
+//---------------------------------------------------------------------------------
+//Deposit
+func Deposit(x *account) (string, float64){
+	var amount float64
+	var account_type string
+	
+	fmt.Println("Please select account type: ")
+	fmt.Scanf("%f",&account_type)
+
+	switch {
+
+	case account_type =="checkings":
+		fmt.Println("Please enter amount to deposit: ")
+		fmt.Scanf("%f",&amount)
+		x.CheckingBalance+= amount
+		fmt.Printf("You have made a total deposit of: %.2f\n",amount)
+		fmt.Printf("Your new balance is: %.2f",x.CheckingBalance)
+
+	case account_type =="savings":
+		fmt.Println("Please enter amount to deposit: ")
+		fmt.Scanf("%f",&amount)
+		x.SavingBalance+=amount
+		fmt.Printf("You have made a total deposit of: %.2f\n",amount)
+		fmt.Printf("Your new balance is: %.2f",x.SavingBalance)
+
+	case account_type =="investment":
+		fmt.Println("Please enter amount to deposit: ")
+		fmt.Scanf("%f",&amount)
+		x.InvestBalance+= amount
+		fmt.Printf("You have made a total deposit of: %.2f\n",amount)
+		fmt.Printf("Your new balance is: %.2f",x.InvestBalance)
+
+	}
+	x.TotalBalance= x.CheckingBalance + x.SavingBalance + x.InvestBalance
+	return  x.Type, x.TotalBalance
+}
+//---------------------------------------------------------------------------------
+//Transfer between accounts
+func InternalTransfer(x *account) (string, float64){
+	var amount float64
+	var account1,account2 string
+	
+	fmt.Println("Please select the account to transfer from: ")
+	fmt.Scanf("%s",&account1)
+	fmt.Println("Please select the account to transfer to: ")
+	fmt.Scanf("%s",&account2)
+
+	fmt.Println("Please enter the amount you wish to transfer:")
+	fmt.Scanf("%f",&amount)
+
+	switch {
+		//Transfer from checkings to savings
+		case account1 =="checkings" && account2 == "savings":
+			x.CheckingBalance-=amount
+			x.SavingBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.CheckingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.SavingBalance)
+
+		//Transfer from checkings to investment
+		case account1 =="checkings" && account2 == "investment":
+			x.CheckingBalance-=amount
+			x.InvestBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.CheckingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.InvestBalance)
+
+		//Transfer from savings to checkings
+		case account1 =="savings" && account2 == "checkings":
+			x.SavingBalance-=amount
+			x.CheckingBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.SavingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.CheckingBalance)
+
+		//Transfer from savings to investment
+		case account1 =="savings" && account2 == "investment":
+			x.SavingBalance-=amount
+			x.InvestBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.SavingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.InvestBalance)
+
+		//Transfer from investment to checkings
+		case account1 =="investment" && account2 == "checkings":
+			x.InvestBalance-=amount
+			x.CheckingBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.CheckingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.InvestBalance)
+
+	
+		//Transfer from investment to savings
+		case account1 =="investment" && account2 == "savings":
+			x.InvestBalance-=amount
+			x.SavingBalance+=amount
+			fmt.Printf("You have made a transfer of %.2f from %s to %s\n", amount,account1,account2)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account1, x.SavingBalance)
+			fmt.Printf("Your new balance in %s is: %2.f\n",account2,x.InvestBalance)
+
 	
 
-	if amount >= 0 && math.Mod(amount,2)==0 && balance>0{
-		balance = float64(x.Balance)-amount
-		fmt.Printf("You have made a withdrawal of %.2f\n",amount)
-		fmt.Printf("Your balance is: %.2f",balance)
-		return true, nil
-	} else{
-		fmt.Print("You have entered an incorrect value, Please try again.")
-		//goto withdraw
-	// use the errors package to display a new, clearcustom error message
- }
- return false, errors.New("You cannot withdraw from this account")
+	}
+	x.TotalBalance= x.CheckingBalance + x.SavingBalance + x.InvestBalance
+	return  x.Type, x.TotalBalance
+}
 
 
 //---------------------------------------------------------------------------------
-//Original function
-// func Withdraw(x *Account) float32{
-// 	var amount float64
-// 	var balance float64
-	
-// 	withdraw:
-// 	fmt.Println("Please enter amount to Withdraw in divisible by 10: ")
-// 	fmt.Scanf("%f",&amount)
-	
-// 	balance = float64(x.Balance)-amount
+// func (x account) DisplayBalance()float64{
+// 	fmt.Printf("Your balance is: %.2f", x.Balance)
+// 	//fmt.Println("Transaction completed at")
+//     return x.Balance
+// }
 
-// 	if amount >= 0 && math.Mod(amount,2)==0{
-// 		balance = float64(x.Balance)-amount
-// 		fmt.Printf("You have made a withdrawal of %.2f\n",amount)
-// 		fmt.Printf("Your balance is: %.2f",balance)
-// 	} else{
-// 		fmt.Print("You have entered an incorrect value, Please try again.")
-// 		goto withdraw
+//---------------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------------
+// func ApplyInterest(x *account) float64{
+// 	interest_c:= 0.01
+// 	interest_i:= 0.02
+// 	interest_s:= 0.05
+// 	switch{
+// 	case  x.Type == "checking":
+// 		x.Balance = (x.Balance* interest_c) + x.Balance
+// 	case  x.Type == "investmet":
+// 		x.Balance = (x.Balance* interest_i) + x.Balance
+// 	case  x.Type == "saving":
+// 		x.Balance = (x.Balance* interest_s) + x.Balance
 // 	}
-
 // 	return x.Balance
- }
+// }
 
 //---------------------------------------------------------------------------------
-//Start application
+
+
+
 func Bank(){
+	Welcome()
 	min := 10
     max := 99999
 	
@@ -123,14 +265,14 @@ func Bank(){
 	currentTime := time.Now()
 	time_= &currentTime
 	
-	//a:= new (Account
+	//a:= new (account
 	//a := account{}
 	//a := new(account)
-	// a:=Account{Name: "Mark" , Balance:140,UserID:(rand.Intn(max - min) + min)}
-	a:=Account{FirstName: "Mark" ,LastName: "Vine" , Balance:140,UserID:(rand.Intn(max - min) + min),Type: "checkings"}
-	b:=Account{FirstName: "John" ,LastName: "Doe" , Balance:500,UserID:(rand.Intn(max - min) + min),Type:"investment"}
-	c:=Account{FirstName: "Jane" ,LastName: "Doe" , Balance:1000,UserID:(rand.Intn(max - min) + min),Type: "savings"}
-	d:=Account{FirstName: "Sarah" ,LastName: "Gill" , Balance:8500,UserID:(rand.Intn(max - min) + min),Type: "savings"}
+	// a:=account{Name: "Mark" , Balance:140,UserID:(rand.Intn(max - min) + min)}
+	a:=account{FirstName: "Mark" ,LastName: "Vine" , CheckingBalance:140.00,UserID:(rand.Intn(max - min) + min),Type: "checkings"}
+	b:=account{FirstName: "John" ,LastName: "Doe" , CheckingBalance:500.00,UserID:(rand.Intn(max - min) + min),Type:"investment"}
+	c:=account{FirstName: "Jane" ,LastName: "Doe" , CheckingBalance:1000.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
+	d:=account{FirstName: "Sarah" ,LastName: "Gill" , CheckingBalance:8500.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
 	
 	fmt.Println(d.UserID)
 	fmt.Println(time_)
