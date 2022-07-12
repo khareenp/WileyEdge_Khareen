@@ -334,6 +334,7 @@ func Bank(){
 		fmt.Println("Please select 1. Withdraw")
 		fmt.Println("Please select 2. Deposit")
 		fmt.Println("Please select 3. Balance")
+		fmt.Println("Please select 4. Transfer between accounts")
 		fmt.Scanf("%d",&choice)
 		if choice == 1 { a.Withdraw(200)//Withdraw(&a)
 			
@@ -341,6 +342,8 @@ func Bank(){
 			Deposit(&a)
 		}else if choice ==3{
 			a.DisplayBalance()
+		}else if choice ==4 {
+			InternalTransfer(&a)
 		}
 	}
 	if account_num == b.UserID{
@@ -354,6 +357,8 @@ func Bank(){
 			Deposit(&b)
 		}else if choice ==3{
 			b.DisplayBalance()
+		}else if choice ==4 {
+			InternalTransfer(&b)
 		}
 	}
 	if account_num == c.UserID{
@@ -367,6 +372,8 @@ func Bank(){
 			Deposit(&c)
 		}else if choice ==3{
 			c.DisplayBalance()
+		}else if choice ==4 {
+			InternalTransfer(&c)
 		}
 	}
 	if account_num == d.UserID{
@@ -380,6 +387,8 @@ func Bank(){
 			Deposit(&d)
 		}else if choice ==3{
 			d.DisplayBalance()
+		}else if choice ==4 {
+			InternalTransfer(&d)
 		}
 	}
 
