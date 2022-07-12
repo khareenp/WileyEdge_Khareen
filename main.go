@@ -14,9 +14,9 @@ import "mymodule/assignments"
 func main() {
 	//assignments.Map()
 	//assignments.Start()
-	//assignments.Bank()
+	assignments.Bank()
 	//subfolder.Start()
-	assignments.BlackJack()
+	//assignments.BlackJack()
 
  }
  

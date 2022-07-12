@@ -242,8 +242,8 @@ func (x *account) DisplayBalance(){
 	var choice int
 	fmt.Println("Please select account balance you wish to display")
 	fmt.Println("1. Savings")
-	fmt.Println("1. Checkings")
-	fmt.Println("1. Investment")
+	fmt.Println("2. Checkings")
+	fmt.Println("3. Investment")
 	fmt.Scanf("%s\n",&choice)
 
 	switch {
@@ -316,10 +316,10 @@ func Bank(){
 	//a := account{}
 	//a := new(account)
 	// a:=account{Name: "Mark" , Balance:140,UserID:(rand.Intn(max - min) + min)}
-	a:=account{FirstName: "Mark" ,LastName: "Vine" , CheckingBalance:140.00,UserID:(rand.Intn(max - min) + min),Type: "checkings"}
-	b:=account{FirstName: "John" ,LastName: "Doe" , CheckingBalance:500.00,UserID:(rand.Intn(max - min) + min),Type:"investment"}
-	c:=account{FirstName: "Jane" ,LastName: "Doe" , CheckingBalance:1000.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
-	d:=account{FirstName: "Sarah" ,LastName: "Gill" , CheckingBalance:8500.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
+	a:=account{FirstName: "Mark" ,LastName: "Vine" , CheckingBalance:140.00, SavingBalance:140.00,UserID:(rand.Intn(max - min) + min),Type: "checkings"}
+	b:=account{FirstName: "John" ,LastName: "Doe" , CheckingBalance:500.00, InvestBalance:950.00,UserID:(rand.Intn(max - min) + min),Type:"investment"}
+	c:=account{FirstName: "Jane" ,LastName: "Doe" , CheckingBalance:1000.00, SavingBalance:1412340.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
+	d:=account{FirstName: "Sarah" ,LastName: "Gill" , CheckingBalance:8500.00, SavingBalance:154123.00, InvestBalance:123455123.00,UserID:(rand.Intn(max - min) + min),Type: "savings"}
 	
 	fmt.Println(d.UserID)
 	fmt.Println(time_)
@@ -350,6 +350,7 @@ func Bank(){
 		fmt.Println("Please select 1. Withdraw")
 		fmt.Println("Please select 2. Deposit")
 		fmt.Println("Please select 3. Balance")
+		fmt.Println("Please select 4. Transfer between accounts")
 		fmt.Scanf("%d",&choice)
 		if choice == 1 { b.Withdraw(20)//Withdraw(&b)
 			
@@ -365,6 +366,7 @@ func Bank(){
 		fmt.Println("Please select 1. Withdraw")
 		fmt.Println("Please select 2. Deposit")
 		fmt.Println("Please select 3. Balance")
+		fmt.Println("Please select 4. Transfer between accounts")
 		fmt.Scanf("%d",&choice)
 		if choice == 1 { c.Withdraw(50)//Withdraw(&c)
 			
@@ -380,6 +382,7 @@ func Bank(){
 		fmt.Println("Please select 1. Withdraw")
 		fmt.Println("Please select 2. Deposit")
 		fmt.Println("Please select 3. Balance")
+		fmt.Println("Please select 4. Transfer between accounts")
 		fmt.Scanf("%d",&choice)
 		if choice == 1 { d.Withdraw(400)//Withdraw(&d)
 			
