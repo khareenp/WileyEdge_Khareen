@@ -257,6 +257,7 @@ func (x *account) DisplayBalance(){
 }
 
 //---------------------------------------------------------------------------------
+//interest added to accounts individual and business
 
 func InterestIndividual(x *account){
 
