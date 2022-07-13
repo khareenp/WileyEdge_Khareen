@@ -49,24 +49,21 @@ func CreateHero(hero *Hero) Hero{
 
 //---------------------------------------------------------------------------------
 //Function to create goblin
-func CreateGoblin(hero *Hero) Hero{
+func CreateGoblin(goblin *Goblin) Goblin{
 	rand.Seed(time.Now().UnixNano())
-	max_h:= 30
-	min_h:=20
-	max_a:= 30
-	min_a:=20
-	max_d:= 30
-	min_d:=20
-	hero.MaxHealth=  rand.Intn(max_h-min_h) + min_h    // range is min to max
-	hero.Attack=  rand.Intn(max_a-min_a) + min_a    // range is min to max
-	hero.Defense=  rand.Intn(max_d-min_d) + min_d    // range is min to max
+	max_h:= 10
+	min_h:=5
+	max_a:= 3
+	min_a:=2
+	max_d:= 2
+	min_d:=1
+	goblin.MaxHealth=  rand.Intn(max_h-min_h) + min_h    // range is min to max
+	goblin.Attack=  rand.Intn(max_a-min_a) + min_a    // range is min to max
+	goblin.Defense=  rand.Intn(max_d-min_d) + min_d    // range is min to max
 	
-	for i := 0; i < len(hero.Potions); i++{
-		hero.Potions[i] = rand.Intn(5-1) + 1
-	}
 	
-	fmt.Println(*hero)	
-	return *hero
+	fmt.Println(*goblin)	
+	return *goblin
 }
 
 
