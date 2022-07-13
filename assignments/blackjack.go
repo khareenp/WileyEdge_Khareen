@@ -8,7 +8,7 @@ import (
 )
 
 // Deck is a collection of cards
-type deck []string
+type Deck []string
 
 // Card is what makes up a deck
 type Card struct {
@@ -17,7 +17,7 @@ type Card struct {
 }
 
 
-func (d deck) shuffle() {
+func (d Deck) shuffle() {
 	source := rand.NewSource(time.Now().UnixNano())
 	r := rand.New(source)
 
@@ -30,34 +30,18 @@ func (d deck) shuffle() {
 }
 
 
-// func GenerateDeck() Deck {
-// 	suites := []string{"spades", "hearts", "diamonds", "clubs"}
-// 	values := []string{"Ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "Jack", "Queen", "King"}
-// 	deck := Deck{}
+func GenerateDeck() Deck {
+	suites := []string{"spades", "hearts", "diamonds", "clubs"}
+	values := []string{"Ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "Jack", "Queen", "King"}
+	D := Deck{}
 		
-// 	// 'i' and 'j' are replaced with underscores, '_' , because we only need the values not index
-// 	for _, suite := range suites {
-// 		for _, value := range values {
-// 			deck.Cards = append(deck.Cards, Card{Suite: suite, Value: value})
-// 		}
-// 	}
-// 	return deck
-// }
-
-func GenerateDeck() deck {
-	cards := deck{}
-	cardSuits := []string{"Spades", "Diamonds", "Hearts", "Clubs"}
-	cardValues := []string{"Ace", "Two", "Three", "Four"}
-
-	// 'i' and 'j' are replaced with underscores, '_' , to let go know we don't need these variables
-	for _, suit := range cardSuits {
-		for _, value := range cardValues {
-			cards = append(cards, value+" of "+suit)
+	// 'i' and 'j' are replaced with underscores, '_' , because we only need the values not index
+	for _, suite := range suites {
+		for _, value := range values {
+			Deck = append(Deck, Card{Suite: suite, Value: value})
 		}
 	}
-
-	return cards
-
+	return D
 }
 
 
@@ -71,7 +55,7 @@ func GenerateDeck() deck {
 // }
 
 // the second paranthesis are the two types we will be returning
-func deal(d deck, handSize int) (deck, deck) {
+func deal(d Deck, handSize int) (Deck, Deck) {
 	return d[:handSize], d[handSize:]
 }
 func BlackJack() {
