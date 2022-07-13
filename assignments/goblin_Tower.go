@@ -71,8 +71,20 @@ func CreateGoblin(goblin *Goblin) Goblin{
 //Start of game
 func GoblinTower(){
 	var new_hero Hero
-	Game()
-	CreateHero(&new_hero)
+	var choice int
+
+	fmt.Println("Press 1 to start game:")
+	fmt.Println("Press 2 to quit game:")
+	fmt.Scanf("%d",&choice)
+
+	switch  {
+	case choice == 1:
+		Game()	
+		CreateHero(&new_hero)
+	case choice==2:
+		End()
+	} 
+		
    // fmt.Println(new_hero)
 
 }
@@ -88,4 +100,8 @@ func Game(){
 	fmt.Println("**************************************")
 	fmt.Println("**************************************")
 	fmt.Println("**************************************")
+}
+
+func End(){
+	fmt.Println("Thankyou. Have a nice day!!")
 }
