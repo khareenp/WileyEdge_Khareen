@@ -31,7 +31,7 @@ func Average(a []int, d chan int){
 	}
 	average:= (float64(sum)/float64(length))
 
-	d <- int(average) // send sum to c
+	d <- int(average) // send sum to d
 }
 
 func Driver() {
