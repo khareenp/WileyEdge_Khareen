@@ -20,6 +20,7 @@ func generator(s string ) chan int {
         
     return out
 }
+
 func puller(c chan int  )chan int{
     out:=make(chan int)
     go func (){
