@@ -7,57 +7,48 @@
 //  and then Pass each  Sentence(up to full stop) to another go routine/routines   
 //  1)print it in reverse order(1 goroutine) 
 //  2 )count its words(2 goroutine)
-
 package assignments
 
-import ("fmt"
-     "strings"
-     "time"
+import (
+	"fmt"
+	"strings"
 )
-
-//takes a string and a channel of array as parameters
-// puts values in channel
-func Send(sample string, ch chan []string){
-	res:= strings.Split(sample, ".")
-	ch <- res // value sent
-}
-
-//gets data from the channel
-func Receive( sample string, ch <- chan []string){
-	time.Sleep(time.Second *2)
-	res:= <- ch
-	for i:= 0; i < len(res); i++{
-		fmt.Println(res[i])
+//
+func reverseCH(str []string, ch chan<- string) {
+	for _, str := range str {
+		runes := []rune(str)
+		for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+			runes[i], runes[j] = runes[j], runes[i]
+		}
+		ch <- string(runes)
 	}
-	res = <-ch 
+	close(ch)
 }
 
-//gets data from the channel and manipulates it
-func reverseString(ch chan []string){
-	res:= <-ch
-	fmt.Println(res)
-	var new_arr []string
-	for i :=len(res)-1 ; i>=0; i-- {//from last index to first index
-		new_arr = append(new_arr,res[i])
-		fmt.Printf("%s",new_arr)//print each index
-	 }
+func countWordsCH(str []string, ch chan<- int) {
+	for _, str := range str {
+		ch <- len(strings.Split(str, " "))
+	}
+	close(ch)
 }
 
+func Driver2() {
+	st :=  "If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph. We created the Random Paragraph Generator with you in mind. The process is quite simple. Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear."
 
-func Driver2(){
-	st := "If you're looking for random paragraphs, you've come to the right place. When a random word or a random sentence isn't quite enough, the next logical step is to find a random paragraph. We created the Random Paragraph Generator with you in mind. The process is quite simple. Choose the number of random paragraphs you'd like to see and click the button. Your chosen number of paragraphs will instantly appear."
 
-	chn:= make(chan []string)
-    go Send(st,chn)
-    go Receive(st,chn)
+	strs := strings.Split(st, ".")
 
-	 res:= <-chn // get from channel
-	// for i :=len(res)-1 ; i>=0; i-- {//from last index to first index
-	// 	fmt.Printf("%s",res[i])//print each index
-	//  }
-	//go reverseString(res,chn )
-	//close(chn)
+	ch1 := make(chan string)
+	ch2 := make(chan int)
+	//first go routine to reverse in channel 1
+	go reverseCH(strs, ch1)
+	//second goroutine to count in channel 2
+	go countWordsCH(strs, ch2)
 
-	fmt.Println(res)
-
+	for str := range ch1 {
+		fmt.Println(str)
+	}
+	for i := range ch2 {
+		fmt.Println(i)
+	}
 }
