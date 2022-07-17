@@ -29,7 +29,6 @@ func puller(c chan int  )chan int{
            for n:=range c{
 			var prime int
 			prime=CheckPrime(n)
-               
              }
              out<-prime
              close(out)

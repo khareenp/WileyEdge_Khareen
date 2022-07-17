@@ -5,7 +5,10 @@ package assignments
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
+	"rogue/characters"
+	"strings"
 	"time"
 )
 
@@ -126,103 +129,65 @@ func (hero *Hero) BuyPotion() {
 //---------------------------------------------------------------------------------
 //Start of game
 func GoblinTower() {
-	// NOTE: The player gets to play as long as they want, so we will need a main game loop in here somewhere.
-	// The loop should create a new Hero with random stats except for the Gold, which should be set to the previous run's Gold when
-	// the Hero died.
-	var new_hero Hero
-	var choice int
-
-	Game()
-	fmt.Println("Press 1 to start game:")
-	fmt.Println("Press 2 to quit game:")
-	fmt.Scanf("%d", &choice)
-
-	switch {
-	case choice == 1:
-		CreateHero(new_hero)
-		// NOTE: Here we could have some kind of `EnterTower()` function (or just inline it) to loop over the Hero walking and 
-		// encountering Goblins, etc.
-	case choice == 2:
-		End()
-	}
-}
-
-// NOTE: We are not given an encounter rate, but you can play with it and find a rate that allows the player to win sometimes.
-var encounterRate float64 = 0.99
-
-func EnterTower(hero *Hero) {
-	// NOTE: The Hero needs to take steps and randomly encounter Goblins, fight them, and be able to drink potions.
-	// NOTE: We need to keep track of the number of steps the Hero has taken to decide if he can visit the potion shop.
-	currentSteps := 0
-	var choice int
-	for {
-		// Let's find out what the player wants to do.
-		fmt.Println("Possible actions: ")
-		fmt.Println("1. Take a step.")
-		if len(hero.Potions) > 0 {
-			fmt.Println("2. Drink a potion.")
-		}
-		// NOTE: You could implement this a number of ways.
-		// Do you want the hero to have to wait at least another 10 steps after every visit the potion shop?
-		// Or do you want them to be able to visit the potion shop 3 times in a row if they have reached level 3 for example?
-		// Or do you want to make vising the potion shop an option only on the step that they attain a new level?
-		// How many potions can the Hero buy at the potion shop in one visit?
-		// Up to you.
-		if {// SOME_CONDITION 
-			fmt.Println("3. Visit the potion shop.")
-		}
 	
-		// NOTE: Maybe another option would be to just quit the game.
-		fmt.Scanf("%d", &choice)
-		switch choice {
-		case 1:
-			NOTE: // Take a step and count it.
-			if rand.Float64() < encounterRate {
-				// NOTE: We need to create a Goblin here.
-				var new_goblin Goblin
-				CreateGoblin(&new_goblin)
-				// NOTE: The Hero needs to fight the Goblin.
-				// If he wins: 
-				// 		record the slain Goblin and give the Hero some gold.
-				// If he loses, 
-				// 		end this run, show the user the game over screen, and ask if they want to play again.
-				// 		don't forget to record the amount of Gold the Hero had for the next run.
-				// So do we want to reward the Hero with gold right here?
-				// Or should we do it in a method we create to have the Hero and Goblin?
-				// Where should we record the number of Goblins the Hero has killed?
-				// Should that be a global variable or live on the Hero struct?
-				// Many ways are acceptable. How would you like to think about it?
+	rand.Seed(time.Now().Unix())
+	hero := characters.NewHero()
+	fmt.Println(hero)
+
+	var response string
+	for {
+		for i := 1; ; i++ {
+			goblin := hero.Step()
+			if goblin != nil {
+				fmt.Printf("step %v has goblin\n", i)
+				fmt.Println(goblin)
+				heroWins := hero.Fight(goblin)
+				if heroWins {
+					hero.RewardFight()
+					fmt.Printf("Hero win\n%v\n", hero)
+				} else {
+					fmt.Print("Goblin win!\n")
+					fmt.Printf("Hero dies!\n%v\n", hero)
+					break
+				}
+			} else {
+				fmt.Println("nothing on step", i)
 			}
-		// NOTE: Probably want to check that the player has met the same conditions we had to show the options for these in the first place.
-		case 2:
-			// NOTE: The Hero wants to drink a potion.
-		case 3:
-			// NOTE: The Hero wants to visit the potion shop.
-		default:
-			fmt.Println("Please select one of the actions.")
+			if i%10 == 0 {
+				hero.LevelUp()
+				fmt.Println(hero)
+				fmt.Print("visit potion shop? (y/n) ")
+				fmt.Scan(&response)
+				response = strings.ToLower(response)
+				if response == "y" {
+					var numPotions = 0
+					fmt.Println("How many potions to buy?")
+					fmt.Printf("Bag contains %v potions\n", hero.PotionCount())
+					fmt.Printf("You currently have %v gold; 1 potion = 4 gold\n", hero.Gold)
+					bagCapacity := len(hero.Potions) - hero.PotionCount()
+					maxBuyable := int(math.Min(float64(hero.Gold/4), float64(bagCapacity)))
+					fmt.Printf("(Enter number 0-%v): ", maxBuyable)
+					fmt.Scan(&numPotions)
+					for numPotions > maxBuyable {
+						fmt.Print("Can't hold that many. Enter a lower amount: ")
+						fmt.Scan(&numPotions)
+					}
+					fmt.Printf("Bought %v potions\n", numPotions)
+					hero.FillPotions(numPotions)
+				}
+			}
 		}
+		fmt.Print("Would you like to play again? (y/n)")
+		fmt.Scan(&response)
+		response = strings.ToLower(response)
+		if response != "y" {
+			break
+		}
+		fmt.Println("Making a new character...")
+		lastHerosGold := hero.Gold
+		hero := characters.NewHero()
+		hero.Gold = lastHerosGold
 	}
-}
 
-//---------------------------------------------------------------------------------
-//Welcome message
-func Game() {
-	fmt.Println("**************************************")
-	fmt.Println("***             WELCOME            ***")
-	fmt.Println("************ GOBLIN TOWER!!! *********")
-	fmt.Println("**************************************")
-	fmt.Println("**************************************")
-	fmt.Println("**************************************")
-	fmt.Println("**************************************")
-}
-
-func End() {
-	// NOTE: Print the number of Goblins slain and the Level attained by the Hero.
-	fmt.Println("Thank you. Have a nice day!!")
-}
-
-// NOTE: We always need a main function.
-func main() {
-	// We can just call the GoblinTower function in here though.
-	GoblinTower()
+	fmt.Printf("Hero had %v levels, %v gold, and killed %v goblins\n", hero.Level, hero.Gold, hero.GoblinsKilled)
 }

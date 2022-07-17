@@ -39,8 +39,8 @@ func Driver() {
 
 	d:= make(chan int)
 	c := make(chan int)
-	go sum(a[:len(a)/4], c)
-	go sum(a[len(a)/2:], c)
+	//go sum(a[:len(a)/4], c)
+	//go sum(a[len(a)/2:], c)
 
 	go Average(a[0:5],d)
 	go Average(a[5:10], d)

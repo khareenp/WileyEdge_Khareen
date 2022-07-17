@@ -28,7 +28,4 @@ func MapwithStruct(){
   
 
 	fmt.Println("The first car in the garage is: ",car1.brand,car1.model,car1.color)
-
-
-
 }

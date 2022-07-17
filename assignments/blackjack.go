@@ -38,7 +38,7 @@ func GenerateDeck() Deck {
 	// 'i' and 'j' are replaced with underscores, '_' , because we only need the values not index
 	for _, suite := range suites {
 		for _, value := range values {
-			Deck = append(Deck, Card{Suite: suite, Value: value})
+			D= append(D, Card{Suite: suite, Value: value})
 		}
 	}
 	return D

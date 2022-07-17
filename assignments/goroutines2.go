@@ -1,6 +1,6 @@
 //Khareen Proverbs
 //Friday Jun 15
-//go routines
+//go routines orig
 
 
 // 2)Take a Paragraphs of text Max word  up to 200 words in a Slice or String
