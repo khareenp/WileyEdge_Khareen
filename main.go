@@ -4,7 +4,7 @@
 package main
 
 import (
-	"mymodule/assignments"
+	//"mymodule/assignments"
 	"mymodule/notes"
 )
 
