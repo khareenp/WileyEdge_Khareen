@@ -3,13 +3,15 @@ package assignments
 
 import (
 	"fmt"
+	"math/big"
 	"math/rand"
 	"time"
 )
 
 // Deck is a collection of cards
-type Deck []string
-
+type Deck struct {
+	Cards []Card
+}
 // Card is what makes up a deck
 type Card struct {
 	Suite string
@@ -17,52 +19,63 @@ type Card struct {
 }
 
 
-func (d Deck) shuffle() {
-	source := rand.NewSource(time.Now().UnixNano())
-	r := rand.New(source)
+func (d *Deck) shuffle() (err error){
+	var old []Card
+	old = d.Cards
+	var shuffled []Card
+	// This should be a relatively fast shuffle, as we always pick a random number
+	// within the remaining cards left to be shuffled.  This has the added bonus
+	// of allowing a deck to be a 'shoe' like in a casino where many decks are
+	// shuffled together and drawn from.
 
-	for i := range d {
-		newPosition := r.Intn(len(d) - 1)
-
-		d[i], d[newPosition] = d[newPosition], d[i]
+	// For N times (where N is the total number of cards in the deck)
+	for i := len(old); i > 0; i-- {
+		// Pick an index within the old cards
+		nBig, e := rand.Int(rand.Reader, big.NewInt(int64(i)))
+		if e != nil {
+			panic(e)
+		}
+		j := nBig.Int64()
+		// Append the randomly picked card to the 'shuffled' pile
+		shuffled = append(shuffled, old[j])
+		// remove the chosen card from the old pile and collapse
+		// (length will be decremented)
+		old = remove(old, j)
 	}
+	d.Cards = shuffled
+	return nil
 
+}
+// remove removes a card at index i from a slice of Cards and collapses the hole
+// (length with be decremented)
+func remove(slice []Card, i int64) []Card {
+	copy(slice[i:], slice[i+1:])
+	return slice[:len(slice)-1]
 }
 
 
-func GenerateDeck() Deck {
+func GenerateDeck(d *Deck) error {
 	suites := []string{"spades", "hearts", "diamonds", "clubs"}
 	values := []string{"Ace","two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "Jack", "Queen", "King"}
-	D := Deck{}
+	//D := Deck{}
 		
 	// 'i' and 'j' are replaced with underscores, '_' , because we only need the values not index
+	//fill the deck
 	for _, suite := range suites {
 		for _, value := range values {
-			D= append(D, Card{Suite: suite, Value: value})
+			d.Cards= append(d.Cards, Card{Suite: suite, Value: value})
 		}
 	}
-	return D
+	d.shuffle()
+	return nil
 }
 
-
-// func Shuffle(a []int) {
-// 	t := time.Now()
-// 	rand.Seed(int64(t.Nanosecond()))
-// 	for i := range a {
-// 		j := rand.Intn(i + 1)
-// 		a[i], a[j] = a[j], a[i]
-// 	}
-// }
-
 // the second paranthesis are the two types we will be returning
-func deal(d Deck, handSize int) (Deck, Deck) {
+func deal(d *Deck, handSize int) (Deck, Deck) {
 	return d[:handSize], d[handSize:]
 }
 func BlackJack() {
-	cards:= GenerateDeck()
-	cards.shuffle()
-	fmt.Printf("cards: %v\n", cards)
-	fmt.Println(deal(cards,2))
-	// fmt.Println(dealCards(shuffledCards, 5))
-
+	Deck:= Deck{}
+	GenerateDeck(&Deck)
+	Deck.shuffle()
 }
