@@ -1,0 +1,90 @@
+package main
+
+import (
+   "fmt"
+   "time"
+)
+
+func main() {
+   // display current time
+   now := time.Now()
+   fmt.Println("Today's date and time:", now)
+   fmt.Println("Current year:", now.Year())
+   fmt.Println("Current month:", now.Month())
+   fmt.Println("Current day:", now.Day())
+   fmt.Println("Current hour:", now.Hour())
+   fmt.Println("Current minute:", now.Minute())
+   fmt.Println("Current second:", now.Second())
+   fmt.Println("Current nanosecond:", now.Nanosecond())
+   fmt.Println("Current location:", now.Location())
+   fmt.Println("Current weekday:", now.Weekday())
+}
+
+//________________________________________________________________
+//The following program defines a specific
+// date and time and then retrieves values from that definition.
+func customtime() {
+   // create custom time
+   customTime := time.Date(
+      2025, 05, 15, 15, 20, 00, 0, time.Local)
+   fmt.Println("Custom date and time:", customTime)
+
+   fmt.Println("Custom year:", customTime.Year())
+   fmt.Println("Custom month:", customTime.Month())
+   fmt.Println("Custom day:", customTime.Day())
+   fmt.Println("Custom weekday:", customTime.Weekday())
+   fmt.Println("Custom hour:", customTime.Hour())
+   fmt.Println("Custom minute:", customTime.Minute())
+   fmt.Println("Custom second:", customTime.Second())
+   fmt.Println("Custom nanosecond:", customTime.Nanosecond())
+   fmt.Println("Custom location:", customTime.Location())
+}
+//__________________________________________________________________
+//When we subtract one time value from another time value, 
+//Go returns duration of time between those two values.
+func subtime() {
+   // display current time
+   now := time.Now()
+   fmt.Println("Current date and time:", now)
+
+   // create custom time
+   customTime := time.Date(
+      2025, 05, 15, 15, 20, 00, 0, time.Local)
+   fmt.Println("Custom date and time:", customTime)
+
+   // subtract two times to returns a duration in hours, 
+   // minutes, seconds
+   diff := now.Sub(customTime)
+   fmt.Println("Time between now and custom time:", -diff)
+
+   fmt.Println("Hours between now and custom time:", -diff.Hours())
+   fmt.Println("Minutes between now and custom time:", -diff.Minutes())
+   fmt.Println("Seconds between now and custom time:", -diff.Seconds())
+   fmt.Println("Nanoseconds between now and custom time:", -diff.Nanoseconds())
+}
+
+//__________________________________________________________________
+// Because the custom time is after the current time, 
+// diff is a negative value.
+// When we add diff to the custom time, we actually subtract that value, 
+// resulting in a date approximately five years earlier.
+// When we include a negative operator with the Add function, 
+// the result is a date approximately five years in the future.
+func addTime() {
+   // display current time
+   now := time.Now()
+   fmt.Println("Current date and time:", now)
+
+   // create custom time
+   customTime := time.Date(
+      2025, 05, 15, 15, 20, 00, 0, time.Local)
+   fmt.Println("Custom date and time:", customTime)
+
+   // time operations
+   // subtract two times to returns a duration in hours, minutes, seconds
+   diff := now.Sub(customTime)
+   fmt.Println("Time between now and custom time:", -diff)
+
+   fmt.Println(customTime.Add(diff))
+   fmt.Println(customTime.Add(-diff))
+}

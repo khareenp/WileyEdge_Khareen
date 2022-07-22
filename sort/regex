@@ -1,0 +1,42 @@
+package sort
+
+import (
+   "fmt"
+   "regexp"
+)
+
+func regeX() {
+   // check if string starts with C and ends with n
+   m1,err1 := regexp.MatchString("C([a-z]+)n", "Catelyn") 
+   fmt.Println(m1)
+   fmt.Println(err1)
+
+   // check if string contains at least one digit
+   m2,err2 := regexp.MatchString("[0-9]", "jonathan6smith") 
+   fmt.Println(m2)
+   fmt.Println(err2)
+
+   //valid number
+   re := regexp.MustCompile(`1?\W*([2-9][0-8][0-9])\W*([2-9][0-9]{2})\W*([0-9]{4})(\se?x?t?(\d*))?`)
+
+   
+}
+/*
+ab: a followed by b
+a|b: a or b
+a*: Zero or more a’s
+a?: Zero or one a’s
+a{2}: Two or more a’s
+[ab], ^[ab]: Either a or b, except a or b (^ symbolises not, ie not a or b)
+[a-z]: Any character a to z
+[0-9]: Any number 0 to 9.
+\d: Any digit. Similarly, a non-digit is \D or [^0-9]
+\s: A whitespace character or [\t\n\f\r]. Similarly, \S is non-whitespace character or [^\t\n\f\r]
+\w: A word character: [0-9A-Za-z_]. Similarly, \W means a non-word: [^0-9A-Za-z_]
+[\t\n\f\r\v]: Means a tab=\011, newline=\012, form feed=\014, carriage return=\015, vertical tab=\013 respectively.
+\123: Octal character upto exactly three digits
+\x9E: Exactly two digit hex character
+\A or ^: Beginning of the text
+$ or \z: End of the text
+i: Case insensitive
+Note: To match special characters, it must be escaped with a backslash character. For example, to match a $, prefix it with a backslash – \$.*/
