@@ -1,15 +1,16 @@
 package websocket
 
 import (
-    "fmt"
-    "log"
-    "github.com/gorilla/websocket"
+	"fmt"
+	"log"
+
+	"github.com/gorilla/websocket"
 )
 
 type Client struct {
     ID   string
     Conn *websocket.Conn //pointer to a websocket.Conn object
-    Pool *Pool //a pointer to the Pool which this client will be part of
+    Lobby *Lobby //a pointer to the Lobby which this client will be part of
 }
 
 type Message struct {
@@ -21,7 +22,7 @@ type Message struct {
 // coming through on this Client’s websocket connection.
 func (c *Client) Read() {
     defer func() {
-        c.Pool.Unregister <- c
+        c.Lobby.Unregister <- c
         c.Conn.Close()
     }()
 
@@ -32,7 +33,7 @@ func (c *Client) Read() {
             return
         }
         message := Message{Type: messageType, Body: string(p)}
-        c.Pool.Broadcast <- message
+        c.Lobby.Broadcast <- message
         fmt.Printf("Message Received: %+v\n", message)
     }
 }
