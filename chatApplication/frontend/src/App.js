@@ -8,6 +8,7 @@ import { connect, sendMsg } from "./api";
 class App extends Component {
   constructor(props) {
     super(props);
+
     //define our starting chatHistory state
     this.state = {
       chatHistory: [],
@@ -28,23 +29,35 @@ class App extends Component {
   // By passing in this event, we’ll be able to query if the key pressed was the Enter key,
   // if it is, we’ll be able to send the value of our <input/> field
   // to our WebSocket endpoint and then subsequently clear that <input/>:
-  send(event) {
+  // send(event) {
+  //   if (event.keyCode === 13) {
+  //     sendMsg(event.target.value);
+  //     event.target.value = "";
+  //   }
+  // }
+  textInputHandler(event) {
     if (event.keyCode === 13) {
       sendMsg(event.target.value);
       event.target.value = "";
     }
   }
 
+  clickHandler(_event) {
+    // send message here
+    sendMsg(_event.target.value);
+    _event.target.value = _event;
+  }
+
   render() {
     return (
-      <div className="App flex flex-col">
+      <div className="App flex flex-col w-full">
         <Header />
         <ChatHistory chatHistory={this.state.chatHistory} />
-        <ChatInput send={this.send} />
+        <ChatInput send={this.textInputHandler} />
         <div className="flex mt-2 mr-3 justify-end md:mr-20">
           <button
             className="w-1/5 mt-1 text-xl border-2 p-2 bg-slate-300 rounded-xl"
-            onClick={this.send}
+            onClick={this.clickHandler}
           >
             Send
           </button>

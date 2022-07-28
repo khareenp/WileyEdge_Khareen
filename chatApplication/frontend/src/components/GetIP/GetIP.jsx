@@ -1,14 +1,19 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+//This component is used to  get ip address and render to browser
 class GetIP extends Component {
   constructor() {
     super();
+    var today = new Date(),
+      time =
+        today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     this.state = {
       ip: "",
-      country: "",
-
+      // country: "",
+      currentTime: time,
+      // currentDateTime: Date().toLocaleString(),
       loading: false,
     };
   }
@@ -29,7 +34,7 @@ class GetIP extends Component {
         let data = response.data || {};
         self.setState({
           ip: data.query || "",
-          country: data.country || "",
+          // country: data.country || "",
           loading: false,
         });
       })
@@ -44,15 +49,17 @@ class GetIP extends Component {
     let self = this;
     if (self.state.loading) {
       return (
-        <div className="App">
-          <h1>Loading IP Address</h1>
+        <div className="App text-sm w-full">
+          <h1>Loading User IP Address</h1>
         </div>
       );
     } else {
       return (
-        <div className="App">
+        <div className="App text-sm">
+          {/* <p>{this.state.currentDateTime}</p> */}
+          <p>Time stamp:{this.state.currentTime}</p>
           <h1>
-            IP: {self.state.ip}, {self.state.country}{" "}
+            User: {self.state.ip}, {self.state.country}{" "}
           </h1>
         </div>
       );

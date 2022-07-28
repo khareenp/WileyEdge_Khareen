@@ -1,3 +1,5 @@
+//
+
 package main
 
 import (
@@ -23,16 +25,16 @@ func serveWs(lobby *websocket.Lobby, w http.ResponseWriter, r *http.Request) {
 }
 
 func setupRoutes() {
-    lobby := websocket.NewLobby()
-    go lobby.Start()
+    lobby := websocket.NewLobby()//creates memory location
+    go lobby.Start()//1)Server is in listen mode, 2)lobby.Register <- client => 3) client.Read()
 
     http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
-        serveWs(lobby, w, r)
+        serveWs(lobby, w, r)//Read from client
     })
 }
 
 func main() {
-    fmt.Println("Distributed Chat App v0.01")
+    fmt.Println("Chat App v1")
     setupRoutes()
     http.ListenAndServe(":8080", nil)
 }

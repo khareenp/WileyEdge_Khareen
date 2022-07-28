@@ -33,7 +33,7 @@ func (c *Client) Read() {
             return
         }
         message := Message{Type: messageType, Body: string(p)}
-        c.Lobby.Broadcast <- message
+        c.Lobby.Broadcast <- message// message is sent to all clients
         fmt.Printf("Message Received: %+v\n", message)
     }
 }

@@ -7,6 +7,7 @@ class ChatInput extends Component {
         <input
           className=" w-11/12 p-3 text-base rounded shadow-md"
           onKeyDown={this.props.send}
+          placeholder="Please type a message, hit enter to send"
         />
       </div>
     );

@@ -11,7 +11,7 @@ type Lobby struct {
     Broadcast  chan Message
 }
 
-func NewLobby() *Lobby {
+func NewLobby() *Lobby {//firt function to be called
     return &Lobby{
         Register:   make(chan *Client),
         Unregister: make(chan *Client),
@@ -30,7 +30,7 @@ func (lobby *Lobby) Start() {
             fmt.Println("Size of Connection Lobby: ", len(lobby.Clients))
             for client, _ := range lobby.Clients {
                 fmt.Println(client)
-                client.Conn.WriteJSON(Message{Type: 1, Body: "New User Joined..."})
+                client.Conn.WriteJSON(Message{Type: 1, Body: "New User Joined..."})            
             }
             break
 
