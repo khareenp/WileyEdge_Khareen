@@ -35,13 +35,14 @@ class App extends Component {
   //     event.target.value = "";
   //   }
   // }
+  //event handler for "enter" key press
   textInputHandler(event) {
     if (event.keyCode === 13) {
       sendMsg(event.target.value);
       event.target.value = "";
     }
   }
-
+  //event handler for clicking send
   clickHandler(_event) {
     // send message here
     sendMsg(_event.target.value);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GetIP from "../GetIP/GetIP";
 
+//this component is used to display message in chat window
 class Message extends Component {
   constructor(props) {
     super(props);
