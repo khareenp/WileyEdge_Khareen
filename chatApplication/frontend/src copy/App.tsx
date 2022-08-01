@@ -7,10 +7,10 @@ import axios from "axios";
 import { atom, useAtom } from "jotai";
 
 export const ipAtom = atom<string | undefined>(undefined);
-
 export const useIP = () => {
   const [IP, setIP] = useAtom(ipAtom);
 
+  // get the current user's IP address
   useEffect(() => {
     if (IP === undefined)
       axios
@@ -29,12 +29,20 @@ export const useIP = () => {
   return IP;
 };
 
-const CHAT_HISTORY: string[] = [];
+export type ChatMessage = {
+  text: string; // message text
+  uip: string; // user IP address
+  timestamp: Date;
+};
 
+const CHAT_HISTORY: ChatMessage[] = [];
+
+// web socket hook
 function useChatSocket() {
-  const [chatHistory, setChatHistory] = useState<string[]>([]);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const ws = useRef<WebSocket | null>(null);
 
+  // handle socket events
   useEffect(() => {
     if (!ws.current) ws.current = new WebSocket("ws://localhost:8080/ws");
     ws.current.onopen = () => console.log("ws opened");
@@ -42,16 +50,18 @@ function useChatSocket() {
 
     ws.current.onmessage = (e) => {
       const message = JSON.parse(e.data);
-      console.log(message);
-      CHAT_HISTORY.push(message.body);
+      //console.log("chat message", JSON.parse(message.body));
+      const chatMessage: ChatMessage = JSON.parse(message.body);
+      CHAT_HISTORY.push(chatMessage);
       setChatHistory([...CHAT_HISTORY]);
     };
   }, []);
 
-  let sendMsg = (msg: string) => {
+  // stringify message and send through socket
+  let sendMsg = (msg: ChatMessage) => {
     if (!ws.current) return;
     console.log("sending msg: ", msg);
-    ws.current.send(msg);
+    ws.current.send(JSON.stringify(msg));
   };
 
   return { chatHistory, sendMsg };
@@ -74,7 +84,7 @@ function App() {
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
           //console.log(values);
-          sendMsg(values.msg);
+          sendMsg({ text: values.msg, uip: IP, timestamp: new Date() });
           // clears form input field after msg sent
           actions.resetForm();
           // onSubmit(values)

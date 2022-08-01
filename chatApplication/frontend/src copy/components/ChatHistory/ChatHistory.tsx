@@ -2,10 +2,11 @@
 // through its' props and will subsequently render them one under the other.
 
 import { FC } from "react";
+import { ChatMessage } from "../../App";
 import Message from "../Message/Message";
-
+``;
 type ChatHistoryProps = {
-  chatHistory: string[];
+  chatHistory: ChatMessage[];
   ip: string;
 };
 
@@ -14,6 +15,7 @@ const ChatHistory: FC<ChatHistoryProps> = ({ chatHistory, ip }) => {
   const date =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
+  // message list
   const messages = chatHistory.map((msg, index) => (
     <Message key={index.toString()} message={msg} />
   ));

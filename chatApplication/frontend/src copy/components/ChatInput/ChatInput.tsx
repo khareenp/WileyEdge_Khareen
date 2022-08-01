@@ -1,5 +1,6 @@
 import { FC } from "react";
 
+// props
 type ChatInputProps = {
   name: string;
   value: string;
@@ -7,6 +8,7 @@ type ChatInputProps = {
   handleSubmit: any;
 };
 
+// simple input to handle chat messages
 const ChatInput: FC<ChatInputProps> = ({
   name,
   handleChange,
