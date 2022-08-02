@@ -13,20 +13,19 @@ type ChatHistoryProps = {
 const ChatHistory: FC<ChatHistoryProps> = ({ chatHistory, ip }) => {
   var today = new Date();
   const date =
-    today.getMonth() + 1 + "-" + today.getDate() + "-" + today.getFullYear();
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
 
-  // message list
+  // message lst
   const messages = chatHistory.map((msg, index) => (
     <Message key={index.toString()} message={msg} />
   ));
 
   return (
-    <div className="ChatHistory bg-slate-100 text-left h-5/6 md:text-2xl sm:text-xl md:font-semibold tracking-wide">
-      <h2 className=" p-5 bg-sky-200 font-semibold text-xl">
+    <div className="ChatHistory bg-slate-100 text-left h-full md:text-2xl sm:text-xl md:font-semibold tracking-wide">
+      <h2 className=" p-4 bg-sky-200 font-semibold text-xl">
         Chat History
         {/* <p>{this.state.currentDateTime}</p> */}
         <p className=" text-sm">Todays Date: {date}</p>
-        <p className=" text-sm">My IP Address: {ip}</p>
       </h2>
       {/* prop for message data */}
       {messages}

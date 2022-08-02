@@ -5,6 +5,7 @@ import ChatInput from "./components/ChatInput/ChatInput.js";
 import { Formik } from "formik";
 import axios from "axios";
 import { atom, useAtom } from "jotai";
+import Lobby from "./components/ChatLobies/Lobby";
 
 export const ipAtom = atom<string | undefined>(undefined);
 export const useIP = () => {
@@ -57,7 +58,7 @@ function useChatSocket() {
     };
   }, []);
 
-  // stringify message and send through socket
+  // stringify messae and send through socket
   let sendMsg = (msg: ChatMessage) => {
     if (!ws.current) return;
     console.log("sending msg: ", msg);
@@ -73,44 +74,53 @@ function App() {
   if (IP === undefined) return <div>loading...</div>;
   if (IP === "") return <div>Error fetching your IP Address.</div>;
   return (
-    <div className="App flex flex-col w-full h-full">
-      <Header />
-      <ChatHistory chatHistory={chatHistory} ip={IP} />
-      {/* formik is a library for form handling */}
-      <Formik
-        initialValues={{ msg: "" }}
-        validateOnBlur={false}
-        validateOnChange={false}
-        onSubmit={(values, actions) => {
-          actions.setSubmitting(false);
-          //console.log(values);
-          sendMsg({ text: values.msg, uip: IP, timestamp: new Date() });
-          // clears form input field after msg sent
-          actions.resetForm();
-          // onSubmit(values)
-        }}
-      >
-        {({ handleChange, handleSubmit, isSubmitting, values }) => (
-          <form onSubmit={handleSubmit}>
-            {/* send message on enter key press */}
-            <ChatInput
-              handleSubmit={handleSubmit}
-              name="msg"
-              value={values.msg}
-              handleChange={handleChange}
-            />
-            <div className="flex mt-2 mr-3 justify-end md:mr-20">
-              {/* submit message on button press */}
-              <button
-                type="submit"
-                className="w-1/5 mt-1 text-xl border-2 p-2 bg-slate-300 rounded-xl"
-              >
-                Send
-              </button>
-            </div>
-          </form>
-        )}
-      </Formik>
+    <div>
+      <div className="App flex flex-col w-full h-full">
+        <Header />
+        <div className="flex h-full">
+          <div className=" w-1/5 h-full bg-slate-200">
+            <Lobby />
+          </div>
+          <div className="chathistory w-full">
+            <ChatHistory chatHistory={chatHistory} ip={IP} />
+            {/* formik is a library for form handling */}
+            <Formik
+              initialValues={{ msg: "" }}
+              validateOnBlur={false}
+              validateOnChange={false}
+              onSubmit={(values, actions) => {
+                actions.setSubmitting(false);
+                //console.log(values);
+                sendMsg({ text: values.msg, uip: IP, timestamp: new Date() });
+                // clears form input field after msg sent
+                actions.resetForm();
+                // onSubmit(values)
+              }}
+            >
+              {({ handleChange, handleSubmit, isSubmitting, values }) => (
+                <form onSubmit={handleSubmit}>
+                  {/* send message on enter key press */}
+                  <ChatInput
+                    handleSubmit={handleSubmit}
+                    name="msg"
+                    value={values.msg}
+                    handleChange={handleChange}
+                  />
+                  <div className="flex mt-2 mr-3 justify-end md:mr-20">
+                    {/* submit message on button press */}
+                    <button
+                      type="submit"
+                      className="w-1/5 mt-1 text-xl border-2 p-2 bg-slate-300 rounded-xl"
+                    >
+                      Send
+                    </button>
+                  </div>
+                </form>
+              )}
+            </Formik>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
