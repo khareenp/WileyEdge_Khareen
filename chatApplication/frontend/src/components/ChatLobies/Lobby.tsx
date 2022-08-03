@@ -59,7 +59,7 @@ const Lobby: FC<{
       <div className="Lobby__title  w-full h-full bg-sky-300 p-6 md:pl-10 font-bold">
         <h2 className="md:text-2xl sm:text-2xl flex-1">Chat Lobbies</h2>
       </div>
-      <div className="Lobby__room h-full md:pl-8 pl-3 py-2 uppercase text-sm md:text-xl tracking-wide">
+      <div className="Lobby__room space-y-4 h-full md:pl-8 pl-3 py-2 uppercase text-sm md:text-xl tracking-wide">
         {form}
         {rooms?.map((room) => (
           <p key={room} onClick={() => setChatroom(room)}>

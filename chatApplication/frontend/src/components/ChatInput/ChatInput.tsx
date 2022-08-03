@@ -16,7 +16,7 @@ const ChatInput: FC<ChatInputProps> = ({
   value,
 }) => {
   return (
-    <div className="ChatInput block ml-6">
+    <div className="ChatInput ml-6">
       <input
         name={name}
         className=" w-11/12 p-2 my-1 text-base rounded shadow-md "
