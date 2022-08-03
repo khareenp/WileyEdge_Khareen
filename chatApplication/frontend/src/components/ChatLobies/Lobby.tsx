@@ -33,7 +33,7 @@ const Lobby: FC<{
     >
       {({ handleChange, handleSubmit, isSubmitting, values }) => (
         <form onSubmit={handleSubmit}>
-          <div className="lobby__input flex pl-2 mt-2">
+          <div className="flex lobby__input px-2 mt-2">
             <input
               name="name"
               className=" w-10 p-2 my-1 text-base rounded shadow-md grow"
@@ -44,7 +44,7 @@ const Lobby: FC<{
             {/* submit message on button press */}
             <button
               type="submit"
-              className="lobby__add w-fit mt-1 text-md border-2 p-2 bg-slate-300 rounded-xl"
+              className="lobby__add w-fit mt-1 text-md border-2 md:ml-4 p-2 bg-slate-300 rounded-xl"
             >
               Add
             </button>
@@ -59,7 +59,7 @@ const Lobby: FC<{
       <div className="Lobby__title  w-full h-full bg-sky-300 p-6 md:pl-10 font-bold">
         <h2 className="md:text-2xl sm:text-2xl flex-1">Chat Lobbies</h2>
       </div>
-      <div className="Lobby__room h-full md:pl-7 pl-3 py-2 uppercase text-sm md:text-xl tracking-wide ">
+      <div className="Lobby__room h-full md:pl-8 pl-3 py-2 uppercase text-sm md:text-xl tracking-wide">
         {form}
         {rooms?.map((room) => (
           <p key={room} onClick={() => setChatroom(room)}>
