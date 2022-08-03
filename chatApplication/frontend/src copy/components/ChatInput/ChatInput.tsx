@@ -19,7 +19,7 @@ const ChatInput: FC<ChatInputProps> = ({
     <div className="ChatInput block ml-6">
       <input
         name={name}
-        className=" w-11/12 p-2 text-base rounded shadow-md"
+        className=" w-11/12 p-2 my-1 text-base rounded shadow-md "
         onChange={handleChange}
         value={value}
         onSubmit={handleSubmit}

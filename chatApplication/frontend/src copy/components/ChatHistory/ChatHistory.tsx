@@ -22,13 +22,15 @@ const ChatHistory: FC<ChatHistoryProps> = ({ chatHistory, ip }) => {
 
   return (
     <div className="ChatHistory bg-slate-100 text-left h-full md:text-2xl sm:text-xl md:font-semibold tracking-wide">
-      <h2 className=" p-4 bg-sky-200 font-semibold text-xl">
+      <h2 className="p-6 md:p-4 bg-sky-200 font-semibold text-xl">
         Chat History
         {/* <p>{this.state.currentDateTime}</p> */}
         <p className=" text-sm">Todays Date: {date}</p>
       </h2>
-      {/* prop for message data */}
-      {messages}
+      <p className="text-sm">
+        {/* prop for message data */}
+        {messages}
+      </p>
     </div>
   );
 };
